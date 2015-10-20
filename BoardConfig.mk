@@ -32,9 +32,11 @@ TARGET_SYSTEM_PROP += $(DEVICE_PATH)/system.prop
 BOARD_BLUETOOTH_BDROID_BUILDCFG_INCLUDE_DIR := $(DEVICE_PATH)/bluetooth
 
 # Camera
-BOARD_CAMERA_SENSORS := imx234_bu64297gwz imx179_mcnex
-TARGET_USE_VENDOR_CAMERA_EXT := true
 USE_DEVICE_SPECIFIC_CAMERA := true
+# Force camera module to be compiled only in 32-bit mode on 64-bit systems
+# Once camera module can run in the native mode of the system (either
+# 32-bit or 64-bit), the following line should be deleted
+BOARD_QTI_CAMERA_32BIT_ONLY := true
 
 # CMHW
 BOARD_HARDWARE_CLASS += $(DEVICE_PATH)/cmhw/src
