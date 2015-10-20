@@ -1,0 +1,20 @@
+
+/system		ext4	/dev/block/bootdevice/by-name/system         flags=display="System"
+
+/data		ext4	/dev/block/bootdevice/by-name/userdata
+/cache		ext4	/dev/block/bootdevice/by-name/cache          flags=display="Cache";backup=1
+/persist 	ext4 	/dev/block/bootdevice/by-name/persist		flags=display="Persist";backup=1
+/boot		emmc 	/dev/block/bootdevice/by-name/boot		flags=display="Boot";backup=1
+/firmware 	vfat 	/dev/block/bootdevice/by-name/modem		flags=display="Modem";backup=1
+
+
+/recovery	emmc 	/dev/block/bootdevice/by-name/recovery		flags=display="Recovery";backup=1
+/misc		emmc 	/dev/block/bootdevice/by-name/misc		flags=display="Misc";backup=1
+/modemst1	emmc	/dev/block/bootdevice/by-name/modemst1		flags=display="EFS";backup=1
+/modemst2	emmc	/dev/block/bootdevice/by-name/modemst2		flags=display="NV (IMEI)";backup=1
+/aboot		emmc	/dev/block/bootdevice/by-name/aboot		flags=display="Bootloader";backup=1
+/splash		emmc	/dev/block/bootdevice/by-name/splash		flags=display="Splash";backup=1
+
+/external_sd   vfat      /dev/block/mmcblk1p1 		flags=display="Micro SDcard";storage;wipeingui;removable
+
+/usbdisk	   vfat		 /dev/block/sda1	/dev/block/sda	flags=display="USB-OTG";storage;removable
