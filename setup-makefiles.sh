@@ -52,10 +52,10 @@ PRODUCT_COPY_FILES += \\
 EOF
 
 LINEEND=" \\"
-COUNT=`wc -l proprietary-files-qc.txt | awk {'print $1'}`
-DISM=`egrep -c '(^#|^$)' proprietary-files-qc.txt`
+COUNT=`wc -l proprietary-files-otr.txt | awk {'print $1'}`
+DISM=`egrep -c '(^#|^$)' proprietary-files-otr.txt`
 COUNT=`expr $COUNT - $DISM`
-for FILE in `egrep -v '(^#|^$)' proprietary-files-qc.txt`; do
+for FILE in `egrep -v '(^#|^$)' proprietary-files-otr.txt`; do
   COUNT=`expr $COUNT - 1`
   if [ $COUNT = "0" ]; then
     LINEEND=""
