@@ -58,8 +58,6 @@ static int last_state = BREATH_SOURCE_NONE;
 
 static int g_breathing = 0;
 
-static int have_init = 0;
-
 char const*const LCD_FILE
         = "/sys/class/leds/lcd-backlight/brightness";
 
@@ -219,6 +217,7 @@ set_breath_light_locked(int event_source,
                  (29 * (colorRGB & 0xFF))) >> 8;
 
     char* light_template;
+    write_int(BREATH_LED_OUTN, 16);
     if(active_states & BREATH_SOURCE_NOTIFICATION) {
         state = &g_notification;
         light_template = BREATH_LED_BRIGHTNESS_NOTIFICATION;
@@ -255,6 +254,7 @@ set_breath_light_locked(int event_source,
 	  return 0;
 	}
 	state = &g_buttons;
+	write_int(BREATH_LED_OUTN, 56);
 	light_template = BREATH_LED_BRIGHTNESS_BUTTONS;
 	last_state = BREATH_SOURCE_BUTTONS;
     } else if(active_states & BREATH_SOURCE_ATTENTION) {
@@ -267,7 +267,6 @@ set_breath_light_locked(int event_source,
       return 0;
     }
 
-    write_int(BREATH_LED_OUTN, 16);
     write_str(BREATH_LED, light_template);
 
     return 0;
