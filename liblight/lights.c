@@ -67,7 +67,7 @@ char const*const BREATH_LED
 char const*const BREATH_LED_OUTN
         = "/sys/class/leds/red/outn";
 
-char const*const BREATH_RED_FADE
+char const*const BREATH_LED_FADE
         = "/sys/class/leds/red/fade_parameter";
 
 char const*const BATTERY_CAPACITY
@@ -267,6 +267,7 @@ set_breath_light_locked(int event_source,
       return 0;
     }
 
+    write_str(BREATH_LED_FADE, "4 0 5"); // 闪烁从亮起到熄灭时间，最高亮度保持时间，上一次熄灭后到下一次亮起间隔时间。单位：秒
     write_str(BREATH_LED, light_template);
 
     return 0;
