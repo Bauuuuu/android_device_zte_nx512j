@@ -54,7 +54,7 @@ BOARD_KERNEL_PAGESIZE := 2048
 BOARD_KERNEL_SEPARATED_DT := true
 BOARD_KERNEL_TAGS_OFFSET := 0x00000100
 BOARD_RAMDISK_OFFSET     := 0x02000000
-TARGET_KERNEL_SOURCE := kernel/nubia/nx511j
+TARGET_KERNEL_SOURCE := kernel/zte/nx511j
 TARGET_KERNEL_ARCH := arm64
 TARGET_KERNEL_CROSS_COMPILE_PREFIX := aarch64-linux-android-
 TARGET_KERNEL_HEADER_ARCH := arm64
@@ -83,6 +83,11 @@ USE_DEVICE_SPECIFIC_CAMERA := true
 # Once camera module can run in the native mode of the system (either
 # 32-bit or 64-bit), the following line should be deleted
 BOARD_QTI_CAMERA_32BIT_ONLY := true
+
+# Chromium
+PRODUCT_PREBUILT_WEBVIEWCHROMIUM := yes
+USE_PREBUILT_CHROMIUM := 1
+-include prebuilts/chromium/nx511j/chromium_prebuilt.mk
 
 # CMHW
 BOARD_HARDWARE_CLASS += $(DEVICE_PATH)/cmhw/src
