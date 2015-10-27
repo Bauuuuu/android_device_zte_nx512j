@@ -174,4 +174,8 @@ on property:sys.ims.DATA_DAEMON_STATUS=1
 #on property:init.svc.surfaceflinger=running
 #    start ppd
 
-
+service tp_node /system/bin/sh /tp_node.sh
+    class main
+    user root
+    group root
+    oneshot

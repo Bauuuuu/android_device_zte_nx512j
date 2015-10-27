@@ -89,9 +89,6 @@ PRODUCT_PREBUILT_WEBVIEWCHROMIUM := yes
 USE_PREBUILT_CHROMIUM := 1
 -include prebuilts/chromium/nx511j/chromium_prebuilt.mk
 
-# CMHW
-BOARD_HARDWARE_CLASS += $(DEVICE_PATH)/cmhw/src
-
 # Crypto
 TARGET_HW_DISK_ENCRYPTION := true
 

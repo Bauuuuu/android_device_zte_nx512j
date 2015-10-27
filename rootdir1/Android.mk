@@ -1,4 +1,5 @@
-# Copyright (C) 2014 The CyanogenMod Project
+#
+# Copyright (C) 2015 The CyanogenMod Project
 #
 # Licensed under the Apache License, Version 2.0 (the "License");
 # you may not use this file except in compliance with the License.
@@ -11,21 +12,17 @@
 # WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
 # See the License for the specific language governing permissions and
 # limitations under the License.
+#
 
-$(call inherit-product, device/zte/nx511j/full_nx511j.mk)
+LOCAL_PATH:= $(call my-dir)
+include $(CLEAR_VARS)
 
-# Inherit some common CM stuff.
-$(call inherit-product, vendor/mk/config/common_full_phone.mk)
+# files that live under device/qcom/common/rootdir/etc/
 
-PRODUCT_NAME := mk_nx511j
-BOARD_VENDOR := zte
-PRODUCT_DEVICE := nx511j
-
-# MKHW
-BOARD_HARDWARE_CLASS := device/zte/nx510j/mkhw
-
-PRODUCT_GMS_CLIENTID_BASE := android-zte
-
-TARGET_VENDOR_PRODUCT_NAME := NX511J
-TARGET_VENDOR_DEVICE_NAME := Z9MINI
-PRODUCT_BUILD_PROP_OVERRIDES += TARGET_DEVICE=NX511J PRODUCT_NAME=NX511J
+include $(CLEAR_VARS)
+LOCAL_MODULE       := tp_node.sh
+LOCAL_MODULE_TAGS  := optional eng
+LOCAL_MODULE_CLASS := ETC
+LOCAL_SRC_FILES    := etc/tp_node.sh
+LOCAL_MODULE_PATH  := $(TARGET_ROOT_OUT)
+include $(BUILD_PREBUILT)
