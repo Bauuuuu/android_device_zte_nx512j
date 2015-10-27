@@ -33,7 +33,6 @@ etc/wfdconfig960_540.xml
 etc/wfdconfig1280_720.xml
 app/qcrilmsgtunnel/qcrilmsgtunnel.apk
 app/shutdownlistener/shutdownlistener.apk
-priv-app/com.qualcomm.location
 priv-app/com.qualcomm.location/com.qualcomm.location.apk
 lib/egl/libGLES_android.so
 lib/modules/texfat.ko
