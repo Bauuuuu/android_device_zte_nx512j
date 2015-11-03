@@ -182,3 +182,4 @@ ro.gps.agps_provider=1
 ro.pip.gated=0
 ro.min_freq_0=960000
 ro.min_freq_4=800000
+ro.mk.maintainer=xiaoxiao
