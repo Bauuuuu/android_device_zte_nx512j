@@ -21,7 +21,7 @@ PRODUCT_NAME := cm_nx511j
 BOARD_VENDOR := zte
 PRODUCT_DEVICE := nx511j
 
-# CKHW
+# CMHW
 BOARD_HARDWARE_CLASS := device/zte/nx511j/cmhw
 
 PRODUCT_GMS_CLIENTID_BASE := android-zte
