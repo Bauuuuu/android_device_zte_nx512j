@@ -155,6 +155,10 @@ PRODUCT_PACKAGES += \
     com.dsi.ant.antradio_library \
     libantradio
 
+# ifree card needed APNs
+PRODUCT_COPY_FILES += \
+    $(DEVICE_PATH)/configs/apns-conf-cdma.xml:system/etc/apns-conf.xml
+
 # Audio
 PRODUCT_PACKAGES += \
     audiod \
