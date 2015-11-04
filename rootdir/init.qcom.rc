@@ -1176,6 +1176,12 @@ on property:persist.sys.power_ctrl=1
 on property:persist.sys.power_ctrl=0
     stop power_engine
 
+#start the compass servie
+service akmd09911 /system/bin/akmd09911
+    class main
+    user root
+    group root
+    oneshot
 
 #start the compass servie
 service akmd09911 /system/bin/akmd09911
