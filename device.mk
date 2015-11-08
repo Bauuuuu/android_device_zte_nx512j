@@ -238,6 +238,12 @@ PRODUCT_PACKAGES += \
     lights.msm8916
 
 PRODUCT_PACKAGES += \
+    libc2dcolorconvert \
+    libdivxdrmdecrypt \
+    libOmxSwVencMpeg4 \
+    libOmxSwVencHevc \
+    libOmxVdecHevc \
+    libOmxVidcCommon \
     libdashplayer \
     libOmxAacEnc \
     libOmxAmrEnc \
