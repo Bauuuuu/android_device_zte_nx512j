@@ -14,7 +14,7 @@ persist.radio.rat_on=combine
 ril.subscription.types=NV,RUIM
 DEVICE_PROVISIONED=1
 # Start in cdma mode
-ro.telephony.default_network=10,1
+ro.telephony.default_network=22,22
 ro.telephony.default_cdma_sub=0
 persist.radio.multisim.config=dsds
 ro.ril.force_eri_from_xml=true
