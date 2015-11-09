@@ -11,6 +11,8 @@ etc/firmware/a420_pm4.fw
 etc/firmware/leia_pm4_470.fw
 etc/firmware/leia_pfp_470.fw
 etc/firmware/ice40.bin
+lib/egl/libGLES_android.so
+lib64/egl/libGLES_android.so
 vendor/lib/libadreno_utils.so
 vendor/lib/libbccQTI.so
 vendor/lib/libC2D2.so
@@ -510,6 +512,14 @@ vendor/lib64/libcneapiclient.so
 vendor/lib/libmm-color-convertor.so
 
 # GPS
+bin/gpsone_daemon
+bin/loc_launcher
+bin/location-mq
+bin/lowi-server
+bin/xtwifi-client
+bin/xtwifi-inet-agent
+etc/permissions/com.qualcomm.location.xml
+priv-app/com.qualcomm.location/com.qualcomm.location.apk
 lib64/libgps.utils.so
 lib64/libloc_api_v02.so
 lib64/libloc_core.so
@@ -520,12 +530,31 @@ lib/libloc_api_v02.so
 lib/libloc_core.so
 lib/libloc_ds_api.so
 lib/libloc_eng.so
+vendor/bin/slim_ap_daemon
+vendor/lib/hw/flp.default.so
+vendor/lib/libalarmservice_jni.so
 vendor/lib/libgeofence.so
 vendor/lib/libizat_core.so
 vendor/lib/liblbs_core.so
+vendor/lib/liblocationservice.so
+vendor/lib/liblowi_client.so
+vendor/lib/libulp2.so
+vendor/lib/libquipc_os_api.so
+vendor/lib/libxtadapter.so
+vendor/lib/libxtwifi_ulp_adaptor.so
+vendor/lib/libxtwifi_zpp_adaptor.so
+vendor/lib64/hw/flp.default.so
+vendor/lib64/libalarmservice_jni.so
 vendor/lib64/libgeofence.so
 vendor/lib64/libizat_core.so
 vendor/lib64/liblbs_core.so
+vendor/lib64/liblocationservice.so
+vendor/lib64/liblowi_client.so
+vendor/lib64/libulp2.so
+vendor/lib64/libquipc_os_api.so
+vendor/lib64/libxtadapter.so
+vendor/lib64/libxtwifi_ulp_adaptor.so
+vendor/lib64/libxtwifi_zpp_adaptor.so
 
 # Media
 vendor/lib/libDivxDrm.so
@@ -630,6 +659,7 @@ etc/data/dsi_config.xml
 etc/data/qmi_config.xml
 
 # Sensors
+bin/akmd09911
 lib64/hw/sensors.msm8916.so
 lib/hw/sensors.msm8916.so
 
