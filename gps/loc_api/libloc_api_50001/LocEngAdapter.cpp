@@ -203,14 +203,14 @@ void LocEngAdapter::reportPosition(UlpLocation &location,
     }
 }
 
-void LocInternalAdapter::reportSv(GnssSvStatus &svStatus,
+void LocInternalAdapter::reportSv(GpsSvStatus &svStatus,
                                   GpsLocationExtended &locationExtended,
                                   void* svExt){
     sendMsg(new LocEngReportSv(mLocEngAdapter, svStatus,
                                locationExtended, svExt));
 }
 
-void LocEngAdapter::reportSv(GnssSvStatus &svStatus,
+void LocEngAdapter::reportSv(GpsSvStatus &svStatus,
                              GpsLocationExtended &locationExtended,
                              void* svExt)
 {
@@ -374,53 +374,16 @@ enum loc_api_adapter_err LocEngAdapter::setXtraVersionCheck(int check)
     switch (check) {
     case 0:
         eCheck = DISABLED;
-        break;
     case 1:
         eCheck = AUTO;
-        break;
     case 2:
         eCheck = XTRA2;
-        break;
     case 3:
         eCheck = XTRA3;
-        break;
-    default:
+    defaul:
         eCheck = DISABLED;
     }
     ret = mLocApi->setXtraVersionCheck(eCheck);
     EXIT_LOG(%d, ret);
     return ret;
-}
-
-void LocEngAdapter::reportGpsMeasurementData(GpsData &gpsMeasurementData)
-{
-    sendMsg(new LocEngReportGpsMeasurement(mOwner,
-                                           gpsMeasurementData));
-}
-
-/*
-  Update Registration Mask
- */
-void LocEngAdapter::updateRegistrationMask(LOC_API_ADAPTER_EVENT_MASK_T event,
-                                           loc_registration_mask_status isEnabled)
-{
-    LOC_LOGD("entering %s", __func__);
-    int result = LOC_API_ADAPTER_ERR_FAILURE;
-    result = mLocApi->updateRegistrationMask(event, isEnabled);
-    if (result == LOC_API_ADAPTER_ERR_SUCCESS) {
-        LOC_LOGD("%s] update registration mask succeed.", __func__);
-    } else {
-        LOC_LOGE("%s] update registration mask failed.", __func__);
-    }
-}
-
-/*
-  Set Gnss Constellation Config
- */
-bool LocEngAdapter::gnssConstellationConfig()
-{
-    LOC_LOGD("entering %s", __func__);
-    bool result = false;
-    result = mLocApi->gnssConstellationConfig();
-    return result;
 }
