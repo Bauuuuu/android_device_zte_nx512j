@@ -11,7 +11,6 @@ etc/permissions/qcnvitems.xml
 etc/wfdconfigsink.xml
 etc/wfdconfig640_480.xml
 etc/init.qcom.debug.sh
-etc/init.qcom.fm.sh
 etc/init.ath3k.bt.sh
 etc/init.qcom.post_boot.sh
 etc/wfdconfig.xml
@@ -35,7 +34,6 @@ lib/modules/texfat.ko
 bin/qemud
 bin/qemu-props
 bin/power_engine
-bin/fmconfig
 vendor/lib/libloc_ext.so
 vendor/lib/mediadrm/libwvdrmengine.so
 vendor/lib/libsubsystem_control.so

@@ -511,6 +511,13 @@ vendor/lib64/libcneapiclient.so
 # Display tuning
 vendor/lib/libmm-color-convertor.so
 
+# FM
+bin/fmconfig
+bin/fmfactorytestserver
+bin/fmfactorytest
+bin/fm_qsoc_patches
+bin/ftmdaemon
+
 # GPS
 bin/gpsone_daemon
 bin/loc_launcher
