@@ -35,3 +35,8 @@ $(call add-radio-file,images/sbl1.mbn)
 $(call add-radio-file,images/tz.mbn)
 $(call add-radio-file,images/hyp.mbn)
 endif
+
+#----------------------------------------------------------------------
+# extra images
+#----------------------------------------------------------------------
+include build/core/generate_extra_images.mk

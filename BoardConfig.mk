@@ -13,8 +13,6 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 
--include device/zte/msm8939-common/BoardConfigCommon.mk
-
 DEVICE_PATH := device/zte/nx511j
 
 TARGET_SPECIFIC_HEADER_PATH := $(DEVICE_PATH)/include

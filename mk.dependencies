@@ -8,10 +8,6 @@
     "target_path": "kernel/zte/nx511j"
   },
   {
-    "repository": "android_device_zte_msm8939-common",
-    "target_path": "device/zte/msm8939-common"
-  },
-  {
     "repository": "android_device_qcom_common",
     "target_path": "device/qcom/common"
   },
