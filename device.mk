@@ -106,9 +106,8 @@ PRODUCT_COPY_FILES += \
     $(DEVICE_PATH)/configs/media_profiles.xml:system/etc/media_profiles.xml
 
 # TWRP Recovery
-PRODUCTY_COPY_FILES += \
-    device/zte/nx511j/twrp.fstab:recovery/root/etc/twrp.fstab \
-    device/zte/nx511j/rootdir/fstab.qcom:recovery/root/fstab.qcom
+PRODUCT_COPY_FILES += \
+    $(DEVICE_PATH)/twrp.fstab:recovery/root/etc/twrp.fstab
 
 # Thermal
 PRODUCT_COPY_FILES += \
