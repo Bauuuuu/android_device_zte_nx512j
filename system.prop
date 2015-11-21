@@ -164,6 +164,10 @@ ro.sys.fw.trim_empty_percent=100
 ro.sys.fw.trim_cache_percent=100
 ro.sys.fw.trim_enable_memory=1073741824
 
+#感谢dianlujitao 感谢milanoo困扰了两天的问题。。。。简直日了哈士奇
+#Show usbdisk in storage settings
+persist.sys.isUsbOtgEnabled=true
+
 #power engine control
 persist.sys.power_ctrl=1
 keyguard.no_require_sim=true
