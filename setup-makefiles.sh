@@ -1,6 +1,6 @@
 #!/bin/bash
 
-DEVICE=nx511j
+DEVICE=nx512j
 VENDOR=zte
 
 OUTDIR=vendor/$VENDOR/$DEVICE
@@ -157,7 +157,7 @@ EOF
 
 LOCAL_PATH := \$(call my-dir)
 
-ifeq (\$(TARGET_DEVICE),nx511j)
+ifeq (\$(TARGET_DEVICE),nx512j)
 ifeq (\$(QCPATH),)
 
 include \$(CLEAR_VARS)

@@ -12,20 +12,23 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 
-$(call inherit-product, device/zte/nx511j/full_nx511j.mk)
+$(call inherit-product, device/zte/nx512j/full_nx512j.mk)
+
+# Enhanced NFC
+$(call inherit-product, vendor/cm/config/nfc_enhanced.mk)
 
 # Inherit some common CM stuff.
 $(call inherit-product, vendor/cm/config/common_full_phone.mk)
 
-PRODUCT_NAME := cm_nx511j
+PRODUCT_NAME := cm_nx512j
 BOARD_VENDOR := zte
-PRODUCT_DEVICE := nx511j
+PRODUCT_DEVICE := nx512j
 
 # CMHW
-BOARD_HARDWARE_CLASS := device/zte/nx511j/cmhw
+BOARD_HARDWARE_CLASS := device/zte/nx512j/cmhw
 
 PRODUCT_GMS_CLIENTID_BASE := android-zte
 
-TARGET_VENDOR_PRODUCT_NAME := NX511J
-TARGET_VENDOR_DEVICE_NAME := Z9MINI
-PRODUCT_BUILD_PROP_OVERRIDES += TARGET_DEVICE=NX511J PRODUCT_NAME=NX511J
+TARGET_VENDOR_PRODUCT_NAME := NX512J
+TARGET_VENDOR_DEVICE_NAME := Z9MAX
+PRODUCT_BUILD_PROP_OVERRIDES += TARGET_DEVICE=NX512J PRODUCT_NAME=NX512J

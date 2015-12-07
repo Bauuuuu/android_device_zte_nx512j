@@ -1,6 +1,6 @@
 Copyright 2015 - The CyanogenMod Project
 
-Device configuration for NX511J (z9 mini).
+Device configuration for NX512J (z9 max 2GB).
 =====================================
 
 Basic   | Spec Sheet
@@ -13,8 +13,6 @@ Shipped |Android Version | 5.0.1
 Storage | 16 GB
 MicroSD | Up to 128 GB
 Battery | 2900 mAh (non-removable)
-Dimensions | 141.3 x 69.8 x 8.2 mm
-Display | 1920 x 1080 pixels, 5.0"
 Rear Camera  | 16.0 MP, LED flash
 Front Camera | 8.0 MP
 

@@ -14,4 +14,4 @@
 # limitations under the License.
 
 PRODUCT_MAKEFILES := \
-    $(LOCAL_DIR)/full_nx511j.mk
+    $(LOCAL_DIR)/full_nx512j.mk

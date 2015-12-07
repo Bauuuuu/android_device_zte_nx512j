@@ -13,14 +13,14 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 
-DEVICE_PATH := device/zte/nx511j
+DEVICE_PATH := device/zte/nx512j
 
 TARGET_SPECIFIC_HEADER_PATH := $(DEVICE_PATH)/include
 
 PRODUCT_COPY_FILES := $(filter-out frameworks/base/data/keyboards/Generic.kl:system/usr/keylayout/Generic.kl , $(PRODUCT_COPY_FILES))
 
 # Assert
-TARGET_OTA_ASSERT_DEVICE := NX511J,nx511j,Nx511J,NX511j
+TARGET_OTA_ASSERT_DEVICE := nx512J,NX512J,Nx512J,NX512j
 
 # Architecture
 TARGET_ARCH := arm64
@@ -34,6 +34,15 @@ TARGET_2ND_ARCH_VARIANT := armv7-a-neon
 TARGET_2ND_CPU_ABI := armeabi-v7a
 TARGET_2ND_CPU_ABI2 := armeabi
 TARGET_2ND_CPU_VARIANT := cortex-a53
+TARGET_GLOBAL_CFLAGS += -mfpu=neon -mfloat-abi=softfp
+TARGET_GLOBAL_CPPFLAGS += -mfpu=neon -mfloat-abi=softfp
+
+# CPU
+TARGET_CPU_CORTEX_A53 := true
+
+TARGET_CPU_SMP := true
+ARCH_ARM_HAVE_TLS_REGISTER := true
+TARGET_USE_QCOM_BIONIC_OPTIMIZATION := true
 
 TARGET_BOARD_SUFFIX := _64
 TARGET_USES_64_BIT_BINDER := true
@@ -52,12 +61,12 @@ BOARD_KERNEL_PAGESIZE := 2048
 BOARD_KERNEL_SEPARATED_DT := true
 BOARD_KERNEL_TAGS_OFFSET := 0x00000100
 BOARD_RAMDISK_OFFSET     := 0x02000000
-TARGET_KERNEL_SOURCE := kernel/zte/nx511j
+TARGET_KERNEL_SOURCE := kernel/zte/NX512J
 TARGET_KERNEL_ARCH := arm64
 TARGET_KERNEL_CROSS_COMPILE_PREFIX := aarch64-linux-android-
 TARGET_KERNEL_HEADER_ARCH := arm64
 TARGET_USES_UNCOMPRESSED_KERNEL := true
-TARGET_KERNEL_CONFIG := msm8916-NX511J_defconfig
+TARGET_KERNEL_CONFIG := msm8916-NX512J_defconfig
 
 # Properties
 TARGET_SYSTEM_PROP += $(DEVICE_PATH)/system.prop
@@ -85,21 +94,26 @@ BOARD_QTI_CAMERA_32BIT_ONLY := true
 # Chromium
 #PRODUCT_PREBUILT_WEBVIEWCHROMIUM := yes
 #USE_PREBUILT_CHROMIUM := 1
-#-include prebuilts/chromium/nx511j/chromium_prebuilt.mk
+#-include prebuilts/chromium/nx512j/chromium_prebuilt.mk
 
 # Crypto
 TARGET_HW_DISK_ENCRYPTION := true
 
-# Display
-BOARD_EGL_CFG := $(DEVICE_PATH)/configs/egl.cfg
+# Graphics
+OVERRIDE_RS_DRIVER := libRSDriver_adreno.so
 MAX_EGL_CACHE_KEY_SIZE := 12*1024
 MAX_EGL_CACHE_SIZE := 2048*1024
-NUM_FRAMEBUFFER_SURFACE_BUFFERS := 3
-OVERRIDE_RS_DRIVER := libRSDriver_adreno.so
-TARGET_CONTINUOUS_SPLASH_ENABLED := true
-TARGET_USES_C2D_COMPOSITION := true
+BOARD_EGL_CFG := $(DEVICE_PATH)/configs/egl.cfg
 TARGET_USES_ION := true
+#TARGET_USES_OVERLAY := true
+NUM_FRAMEBUFFER_SURFACE_BUFFERS := 3
+TARGET_USES_C2D_COMPOSITION := true
 USE_OPENGL_RENDERER := true
+TARGET_CONTINUOUS_SPLASH_ENABLED := true
+
+# Media
+TARGET_ENABLE_QC_AV_ENHANCEMENTS := true
+TARGET_QCOM_MEDIA_VARIANT := caf
 
 # FM
 TARGET_QCOM_NO_FM_FIRMWARE := true
@@ -141,8 +155,12 @@ BOARD_USES_QCNE := true
 endif
 BOARD_USES_QCOM_HARDWARE := true
 
+COMMON_GLOBAL_CFLAGS += -DQCOM_BSP
+COMMON_GLOBAL_CFLAGS += -DQCOM_HARDWARE
+TARGET_USES_QCOM_BSP := true
+
 # Radio
-ADD_RADIO_FILES := true
+ADD_RADIO_FILES := false
 TARGET_RELEASETOOLS_EXTENSIONS := $(DEVICE_PATH)
 
 # Recovery
@@ -202,4 +220,4 @@ WPA_SUPPLICANT_VERSION := VER_0_8_X
 BOARD_ANT_WIRELESS_DEVICE := "vfs-prerelease"
 
 # inherit from the proprietary version
--include vendor/zte/nx511j/BoardConfigVendor.mk
+-include vendor/zte/nx512j/BoardConfigVendor.mk

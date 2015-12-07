@@ -30,6 +30,8 @@ import init.target.rc
 
 on early-init
     mount debugfs debugfs /sys/kernel/debug
+    insmod /sbin/qcrypto_module.ko
+    insmod /sbin/qdrbg_module.ko
 
 on init
     setprop persist.powermo.disfeature " "
@@ -733,7 +735,7 @@ service qmiproxy /system/bin/qmiproxy
 service qmuxd /system/bin/qmuxd
     class main
     user root
-    group radio audio bluetooth gps qcom_diag
+    group radio audio bluetooth gps nfc qcom_diag
     disabled
 
 service netmgrd /system/bin/netmgrd

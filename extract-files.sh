@@ -1,7 +1,7 @@
 #!/bin/bash
 
 #set -e
-export DEVICE=nx511j
+export DEVICE=nx512j
 export VENDOR=zte
 
 if [ $# -eq 0 ]; then

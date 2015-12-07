@@ -24,7 +24,6 @@ etc/wfdconfig800_480.xml
 etc/hcidump.sh
 etc/init.goldfish.sh
 etc/init.qcom.coex.sh
-etc/dpm/dpm.conf
 etc/dpm/nsrm/NsrmConfiguration.xml
 etc/wfdconfig960_540.xml
 etc/wfdconfig1280_720.xml
