@@ -1,4 +1,10 @@
-#ro.vendor.extension_library=/vendor/lib64/libqti-perfd-client.so
+# ActivityManager optimizations
+ro.config.max_starting_bg=8
+ro.sys.fw.bservice_enable=true
+ro.sys.fw.bservice_limit=5
+ro.sys.fw.bservice_age=5000
+
+# RIL
 rild.libpath=/vendor/lib64/libril-qc-qmi-1.so
 rild.libargs=-d /dev/smd0
 persist.rild.nitz_plmn=
@@ -11,11 +17,12 @@ persist.rild.nitz_short_ons_1=
 persist.rild.nitz_short_ons_2=
 persist.rild.nitz_short_ons_3=
 persist.radio.rat_on=combine
-ril.subscription.types=RUIM
-#telephony.lteOnGsmDevice=1
+ril.subscription.types=NV,RUIM
+telephony.lteOnGsmDevice=1
 telephony.lteOnCdmaDevice=0
+ro.telephony.ril.config=simactivation
 DEVICE_PROVISIONED=1
-ro.telephony.default_network=22,22
+ro.telephony.default_network=9
 persist.radio.multisim.config=dsds
 persist.data.qmi.adb_logmask=0
 ro.ril.multi_rat_capable=true
@@ -23,20 +30,13 @@ ro.ril.multi_rat_capable=true
 # lcd density
 ro.sf.lcd_density=480
 
-debug.sf.hw=1
-debug.egl.hw=1
+# Display
 debug.composition.type=c2d
-persist.hwc.mdpcomp.enable=true
-persist.mdpcomp.4k2kSplit=1
-persist.hwc.mdpcomp.maxpermixer=5
-persist.mdpcomp_perfhint=50
-debug.mdpcomp.logs=0
-persist.metadata_dynfps.disable=true
-persist.hwc.ptor.enable=true
-dalvik.vm.heapsize=36m
-dev.pm.dyn_samplingrate=1
-persist.demo.hdmirotationlock=false
+debug.sf.gpu_comp_tiling=1
 debug.mdpcomp.idletime=600
+persist.hwc.mdpcomp.enable=true
+persist.hwc.ptor.enable=true
+ro.opengles.version=196609
 debug.enable.sglscale=1
 
 #
@@ -59,6 +59,9 @@ media.aac_51_output_enabled=true
 #codecs:DivxHD Divx FLAC QCP MP2TS 3G2 DTS AVI ASF AC3 AAC
 mm.enable.qcom_parser=3314291
 
+# Enable AwesomePlayer stats
+persist.debug.sf.statistics=1
+
 #
 # system props for the data modules
 #
@@ -72,12 +75,13 @@ persist.timed.enable=true
 # system prop for opengles version
 #
 # 131072 is decimal for 0x30000 to report version 3
-ro.opengles.version=196608
+ro.opengles.version=196609
 
 # System property for cabl
 ro.qualcomm.cabl=0
 
 # System props for bluetooh
+ro.qualcomm.bt.hci_transport=smd
 # System prop to turn on hfp client
 bluetooth.hfp.client=1
 
@@ -89,21 +93,19 @@ persist.fuse_sdcard=true
 #snapdragon value add features
 #
 ro.qc.sdk.audio.ssr=false
-##fluencetype can be "fluence" or "fluencepro" or "none"
 ro.qc.sdk.audio.fluencetype=fluence
 persist.audio.fluence.voicecall=true
 persist.audio.fluence.voicerec=false
 persist.audio.fluence.speaker=false
-#Set for msm8916
 tunnel.audio.encode=false
-#Buffer size in kbytes for compress offload playback
-audio.offload.buffer.size.kb=240
-#Minimum duration for offload playback in secs
+audio.offload.buffer.size.kb=64
 audio.offload.min.duration.secs=30
 persist.factory.mic_number=13
-#Enable offload audio video playback by default
-av.offload.enable=false
-#enable voice path for PCM VoIP by default
+av.offload.enable=true
+audio.offload.gapless.enabled=true
+audio.offload.pcm.16bit.enable=false
+audio.offload.pcm.24bit.enable=true
+av.streaming.offload.enable=true
 use.voice.path.for.pcm.voip=true
 
 #System property for FM transmitter
@@ -124,6 +126,7 @@ ro.sys.usb.default.config=nubia
 persist.debug.wfd.enable=1
 #property to enable VDS WFD solution
 persist.hwc.enable_vds=1
+sys.apps.hwaccel.enable=1
 
 #property to set wfd output resolution is 1080P(0) / 720P(1) / 960*540(2) / 800*480(3)
 persist.sys.wfd.zte_resolution=2
@@ -162,6 +165,9 @@ ro.sys.fw.trim_enable_memory=1073741824
 #Show usbdisk in storage settings
 persist.sys.isUsbOtgEnabled=true
 
+# Disable adopted sdcard encryption
+vold.no_sd_adopt_encryption=1
+
 #power engine control
 persist.sys.power_ctrl=1
 keyguard.no_require_sim=true
@@ -174,12 +180,50 @@ persist.factory.loopback_volume=12
 audio.effect.name=srs
 audio.offload.disable=1
 persist.sys.singlehand=1
+
+# GPS
 persist.gps.qc_nlp_in_use=1
 persist.loc.nlp_name=com.qualcomm.location
 ro.gps.agps_provider=1
+ro.qc.sdk.izat.premium.enabled=0
+ro.qc.sdk.izat.service_mask=0x0
 ro.pip.gated=0
 ro.min_freq_0=960000
 ro.min_freq_4=800000
 
 # fm config
 hw.fm.mode=normal
+
+#property for vendor specific library
+ro.vendor.at_library=libqti-at.so
+ro.vendor.gt_library=libqti-gt.so
+sys.games.gt.prof=0
+
+#TRUPUREX_EDITS
+#
+windowsmgr.max_events_per_sec=500
+ro.min_pointer_dur=8
+wifi.supplicant_scan_interval=180
+pm.sleep_mode=1
+ro.ril.power_collapse=1
+debug.performance.tuning=1
+video.accelerate.hw=1
+persist.sys.purgeable_assets=1
+persist.service.pcsync.enable=0
+persist.service.lgospd.enable=0
+dalvik.vm.checkjni=false
+dalvik.vm.dexopt-data-only=1
+dalvik.vm.jmiopts=forcecopy
+dalvik.vm.verify-bytecode=false
+dalvik.vm.execution-mode=int:jit
+ro.config.nocheckin=1
+dalvik.vm.dexopt-flags=m=v,o=y
+ro.usb.host=1
+lpa.decode=false
+tunnel.decode=false
+lpa.releaselock=false
+lpa.use-stagefreight=false
+persist.sys.isUsbOtgEnabled=1
+net.tethering.noprovisioning=true
+dalvik.vm.dex2oat-filter=everything
+dalvik.vm.image-dex2oat-filter=everything

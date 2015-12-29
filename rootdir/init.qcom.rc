@@ -34,38 +34,16 @@ on early-init
     insmod /sbin/qdrbg_module.ko
 
 on init
+    export LD_SHIM_LIBS "/system/lib/libcrypto.so|libboringssl-compat.so:/system/vendor/lib/libmmcamera2_sensor_modules.so|libzte_camera.so:/system/vendor/lib/libmmcamera2_stats_modules.so|libzte_camera.so:/system/lib64/libcrypto.so|libboringssl-compat.so:/system/vendor/lib64/egl/libEGL_adreno.so|libboringssl-compat.so:/system/vendor/lib64/libcne.so|libril_shim.so"
+
     setprop persist.powermo.disfeature " "
-    
+
     # Set permissions for persist partition
     mkdir /persist 0771 system system
 
-    # See storage config details at http://source.android.com/tech/storage/
-    mkdir /mnt/shell/emulated 0700 shell shell
-    mkdir /storage 0550 system sdcard_r
-    mkdir /storage/emulated 0555 root root
-    mkdir /mnt/media_rw/sdcard1 0700 media_rw media_rw
-    mkdir /storage/usbdisk 0000 system system
-    mkdir /mnt/media_rw/usbdisk 0700 media_rw media_rw
-    mkdir /storage/sdcard1 0700 root root
-    mkdir /storage/usbdisk 0700 root root
-
-    export EXTERNAL_STORAGE /storage/emulated/legacy
-    export SECONDARY_STORAGE /storage/sdcard1
-    export EMULATED_STORAGE_SOURCE /mnt/shell/emulated
-    export EMULATED_STORAGE_TARGET /storage/emulated
-
     # Support legacy paths
-    symlink /storage/emulated/legacy /sdcard
-    symlink /storage/emulated/legacy /mnt/sdcard
-    symlink /storage/emulated/legacy /storage/sdcard0
-    symlink /mnt/shell/emulated/0 /storage/emulated/legacy
-    symlink /storage/sdcard1 /external_sd
-    symlink /storage/usbdisk /usbdisk
-    symlink /storage/usbdisk /mnt/usbdisk
-    
-    mkdir /dev/bus 0755 root root
-    mkdir /dev/bus/usb 0755 root root
-    
+    symlink /sdcard /mnt/sdcard0
+    symlink /sdcard /storage/sdcard0
 
 on early-boot
     # set RLIMIT_MEMLOCK to 64MB
@@ -158,6 +136,9 @@ on boot
     chmod 2755 /data/misc/perfd
     mkdir /data/system/perfd 0770 root system
     chmod 2770 /data/system/perfd
+
+#Create NETMGR daemon socket area
+    mkdir /dev/socket/netmgr 0750 radio radio
 
     setprop wifi.interface wlan0
 
@@ -618,6 +599,14 @@ on property:vold.decrypt=trigger_restart_framework
 on property:persist.env.fastdorm.enabled=true
     setprop persist.radio.data_no_toggle 1
 
+# FM enable/disable triggers
+on property:hw.fm.init=1
+    write /sys/module/radio_iris_transport/parameters/fmsmd_set 1
+
+on property:hw.fm.init=0
+    write /sys/module/radio_iris_transport/parameters/fmsmd_set 0
+    setprop hw.fm.init 1
+
 service cnd /system/bin/cnd
     class late_start
     socket cnd stream 660 root inet
@@ -1032,27 +1021,6 @@ service profiler_daemon /system/bin/profiler_daemon
     group root
     disabled
 
-
-on property:ro.fuse_sdcard=true
-    start sdcard
-
-# Binding fuse mount point to /storage/emulated/legacy
-on property:init.svc.sdcard=running
-    wait /mnt/shell/emulated/0
-    mount none /mnt/shell/emulated/0 /storage/emulated/legacy bind
-
-# virtual sdcard daemon running as media_rw (1023)
-service sdcard /system/bin/sdcard -u 1023 -g 1023 -l /data/media /mnt/shell/emulated
-    class late_start
-
-service fuse_sdcard1 /system/bin/sdcard -u 1023 -g 1023 -w 1023 /mnt/media_rw/sdcard1 /storage/sdcard1
-    class late_start
-    disabled
-
-service fuse_usbdisk /system/bin/sdcard -u 1023 -g 1023 -w 1023 /mnt/media_rw/usbdisk /storage/usbdisk
-    class late_start
-    disabled
-
 service hcidump /system/bin/sh /system/etc/hcidump.sh
     user bluetooth
     group bluetooth system net_bt_admin net_admin
@@ -1194,32 +1162,6 @@ service FontsWilluse /system/bin/sh /system/etc/fonts_check.sh
     group root
     oneshot
 
-#dm instructions added by ztemt 2014.12.09
-service dmapp /system/bin/dmapp
-	class main
-	seclabel u:r:dm:s0
-
-# ztemt add for poweroff alarm
-service poad /system/bin/poad
-    class main
-    user root
-    group root
-    oneshot
-#ZTEMT ADD by leiwen 2014-12-5 for bt test
-service btCommand /system/bin/btCommand
-    class main
-    user root
-    group root
-    disabled
-    oneshot
-
-on property:persist.service.btcmd=1
-    start btCommand
-
-on property:persist.service.btcmd=0
-    stop  btCommand
-
-
 service wirelesstest /system/bin/wirelesstest
     class main
     socket wirelesstest stream 600 system system
@@ -1258,3 +1200,9 @@ on property:persist.sys.image.colortmp=c
 mkdir /data/data/com.android.camera/cache/so/
 chmod 0667 -R /data/data/com.android.camera/cache/so/
 #ZTEMT end
+# SSWAP
+service swapon /sbin/sswap -s
+    class core
+    user root
+    group root
+    oneshot

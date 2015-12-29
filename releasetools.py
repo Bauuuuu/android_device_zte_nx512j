@@ -13,7 +13,7 @@
 # limitations under the License.
 
 """Emit commands needed for ZTE devices during OTA installation
-(installing the aboot/modem/rpm/sbl/tz/hyp images)."""
+(installing the aboot/modem/rpm/sbl/tz/bluetooth/hyp/pmic images)."""
 
 import common
 import re
@@ -34,7 +34,11 @@ image_partitions = {
    'rpm.mbn'           : 'rpm',
    'tz.mbn'            : 'tz',
    'hyp.mbn'           : 'hyp',
+   'sdi.mbn'           : 'sdi',
+   'pmic.mbn'          : 'pmic',
+   'BTFM.bin'          : 'bluetooth',
    'NON-HLOS.bin'      : 'modem',
+   'splash.img'        : 'splash',
    'sbl1.mbn'          : 'sbl1'
 }
 

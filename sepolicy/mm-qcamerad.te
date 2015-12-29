@@ -1,0 +1,2 @@
+allow mm-qcamerad camera_data_file:dir r_dir_perms;
+allow mm-qcamerad persist_file:dir search;

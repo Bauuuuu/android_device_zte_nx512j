@@ -54,7 +54,7 @@ TARGET_BOOTLOADER_BOARD_NAME := MSM8916
 TARGET_NO_BOOTLOADER := true
 
 # Kernel
-BOARD_CUSTOM_BOOTIMG_MK := $(DEVICE_PATH)/mkbootimg.mk
+#BOARD_CUSTOM_BOOTIMG_MK := $(DEVICE_PATH)/mkbootimg.mk
 BOARD_KERNEL_BASE := 0x80000000
 BOARD_KERNEL_CMDLINE := console=null androidboot.console=ttyHSL0 boot_cpus=0,3,4,7 androidboot.hardware=qcom msm_rtb.filter=0x237 ehci-hcd.park=3 androidboot.bootdevice=7824900.sdhci lpm_levels.sleep_disabled=1 sched_enable_hmp=1 androidboot.selinux=permissive
 BOARD_KERNEL_PAGESIZE := 2048
@@ -66,7 +66,7 @@ TARGET_KERNEL_ARCH := arm64
 TARGET_KERNEL_CROSS_COMPILE_PREFIX := aarch64-linux-android-
 TARGET_KERNEL_HEADER_ARCH := arm64
 TARGET_USES_UNCOMPRESSED_KERNEL := true
-TARGET_KERNEL_CONFIG := msm8916-NX512J_defconfig
+TARGET_KERNEL_CONFIG := f93-NX512J_defconfig
 
 # Properties
 TARGET_SYSTEM_PROP += $(DEVICE_PATH)/system.prop
@@ -77,6 +77,10 @@ AUDIO_FEATURE_LOW_LATENCY_PRIMARY := true
 AUDIO_FEATURE_ENABLED_VOICE_CONCURRENCY := true
 AUDIO_FEATURE_ENABLED_WFD_CONCURRENCY := true
 BOARD_USES_ALSA_AUDIO := true
+USE_CUSTOM_AUDIO_POLICY := 1
+#
+AUDIO_FEATURE_DEEP_BUFFER_RINGTONE := true
+AUDIO_FEATURE_ENABLED_KPI_OPTIMIZE := true
 
 # Bluetooth
 BOARD_HAVE_BLUETOOTH := true
@@ -90,6 +94,7 @@ USE_DEVICE_SPECIFIC_CAMERA := true
 # Once camera module can run in the native mode of the system (either
 # 32-bit or 64-bit), the following line should be deleted
 BOARD_QTI_CAMERA_32BIT_ONLY := true
+COMMON_GLOBAL_CFLAGS += -DCAMERA_VENDOR_L_COMPAT
 
 # Chromium
 #PRODUCT_PREBUILT_WEBVIEWCHROMIUM := yes
@@ -98,14 +103,13 @@ BOARD_QTI_CAMERA_32BIT_ONLY := true
 
 # Crypto
 TARGET_HW_DISK_ENCRYPTION := true
+TARGET_NO_SD_ADOPT_ENCRYPTION := true
 
 # Graphics
 OVERRIDE_RS_DRIVER := libRSDriver_adreno.so
 MAX_EGL_CACHE_KEY_SIZE := 12*1024
 MAX_EGL_CACHE_SIZE := 2048*1024
-BOARD_EGL_CFG := $(DEVICE_PATH)/configs/egl.cfg
 TARGET_USES_ION := true
-#TARGET_USES_OVERLAY := true
 NUM_FRAMEBUFFER_SURFACE_BUFFERS := 3
 TARGET_USES_C2D_COMPOSITION := true
 USE_OPENGL_RENDERER := true
@@ -129,6 +133,8 @@ TARGET_NO_RPC := true
 # Init
 TARGET_INIT_VENDOR_LIB := libinit_msm
 TARGET_PLATFORM_DEVICE_BASE := /devices/soc.0/
+
+#ANDROID_COMPILE_WITH_JACK := false
 
 # Lights
 TARGET_PROVIDES_LIBLIGHT := true
@@ -179,6 +185,9 @@ TARGET_GLOBAL_CPPFLAGS += -DANDROID_MULTI_SIM
 
 # SELinux
 include device/qcom/sepolicy/sepolicy.mk
+
+BOARD_SEPOLICY_DIRS += \
+    $(DEVICE_PATH)/sepolicy
 
 # TWRP Recovery
 RECOVERY_GRAPHICS_USE_LINELENGTH := true

@@ -69,16 +69,20 @@ PRODUCT_COPY_FILES += \
     $(DEVICE_PATH)/audio/audio_platform_info.xml:system/etc/audio_platform_info.xml \
     $(DEVICE_PATH)/audio/audio_policy.conf:system/etc/audio_policy.conf \
     $(DEVICE_PATH)/audio/mixer_paths.xml:system/etc/mixer_paths.xml \
-    $(DEVICE_PATH)/audio/audio_effects.conf:system/vendor/etc/audio_effects.conf
+    $(DEVICE_PATH)/audio/audio_effects.conf:system/vendor/etc/audio_effects.conf \
+    $(DEVICE_PATH)/audio/aanc_tuning_mixer.txt:system/etc/aanc_tuning_mixer.txt \
+    $(DEVICE_PATH)/audio/sound_trigger_mixer_paths.xml:system/etc/sound_trigger_mixer_paths.xml	
 
 # GPS
 PRODUCT_COPY_FILES += \
-    $(DEVICE_PATH)/gps/flp.conf:system/etc/flp.conf \
-    $(DEVICE_PATH)/gps/gps.conf:system/etc/gps.conf \
-    $(DEVICE_PATH)/gps/izat.conf:system/etc/izat.conf \
-    $(DEVICE_PATH)/gps/lowi.conf:system/etc/lowi.conf \
-    $(DEVICE_PATH)/gps/quipc.conf:system/etc/quipc.conf \
-    $(DEVICE_PATH)/gps/sap.conf:system/etc/sap.conf
+    $(DEVICE_PATH)/gps/etc/flp.conf:system/etc/flp.conf \
+    $(DEVICE_PATH)/gps/etc/gps.conf:system/etc/gps.conf \
+    $(DEVICE_PATH)/gps/etc/izat.conf:system/etc/izat.conf \
+    $(DEVICE_PATH)/gps/etc/lowi.conf:system/etc/lowi.conf \
+    $(DEVICE_PATH)/gps/etc/quipc.conf:system/etc/quipc.conf \
+    $(DEVICE_PATH)/gps/etc/msap.conf:system/etc/msap.conf \
+    $(DEVICE_PATH)/gps/etc/xtwifi.conf:system/etc/xtwifi.conf \
+    $(DEVICE_PATH)/gps/etc/sap.conf:system/etc/sap.conf
 
 # IRSC
 PRODUCT_COPY_FILES += \
@@ -166,6 +170,10 @@ PRODUCT_PACKAGES += \
     com.dsi.ant.antradio_library \
     libantradio
 
+# MIDI feature
+PRODUCT_COPY_FILES += \
+    frameworks/native/data/etc/android.software.midi.xml:system/etc/permissions/android.software.midi.xml
+
 # ifree card needed APNs
 PRODUCT_COPY_FILES += \
     $(DEVICE_PATH)/configs/apns-conf.xml:system/etc/apns-conf.xml
@@ -221,12 +229,17 @@ PRODUCT_PACKAGES += \
     make_ext4fs \
     setup_fs
 
+# DataServices
+PRODUCT_PACKAGES += \
+    librmnetctl \
+    rmnetcli \
+    sockev \
+    datatop
+
 # FM
 PRODUCT_PACKAGES += \
-    FM2 \
-    FMRecord \
-    libqcomfm_jni \
-    qcom.fmradio
+    FMRadio \
+    libfmjni
 
 # GPS
 PRODUCT_PACKAGES += \
@@ -272,7 +285,10 @@ PRODUCT_PACKAGES += \
     libOmxVdec \
     libOmxVenc \
     libstagefrighthw \
-    qcmediaplayer
+    qcmediaplayer \
+    libqcmediaplayer \
+    libextmedia_jni \
+    libstagefright_soft_flacdec
 
 PRODUCT_BOOT_JARS += \
     qcmediaplayer
@@ -304,6 +320,12 @@ PRODUCT_COPY_FILES += \
 # RIL
 PRODUCT_PACKAGES += \
     libxml2
+
+# Misc. libs
+PRODUCT_PACKAGES += \
+    libstlport \
+    libboringssl-compat \
+    libzte_camera
 
 # USB
 PRODUCT_PACKAGES += \

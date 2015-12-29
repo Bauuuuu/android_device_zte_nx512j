@@ -97,7 +97,6 @@ $(WCNSS_SYMLINKS): $(LOCAL_INSTALLED_MODULE)
 
 ALL_DEFAULT_INSTALLED_MODULES += $(WCNSS_SYMLINKS)
 
-
 VENUS_IMAGES := \
     venus.b00 venus.b01 venus.b02 venus.b03 venus.b04 venus.mdt
 
@@ -107,7 +106,6 @@ $(VENUS_SYMLINKS): $(LOCAL_INSTALLED_MODULE)
 	@mkdir -p $(dir $@)
 	@rm -rf $@
 	$(hide) ln -sf /firmware/image/$(notdir $@) $@
-
 ALL_DEFAULT_INSTALLED_MODULES += $(VENUS_SYMLINKS)
 
 WV_IMAGES := \

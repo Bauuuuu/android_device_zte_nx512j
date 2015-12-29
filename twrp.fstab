@@ -15,6 +15,6 @@
 /aboot		emmc	/dev/block/bootdevice/by-name/aboot		flags=display="Bootloader";backup=1
 /splash		emmc	/dev/block/bootdevice/by-name/splash		flags=display="Splash";backup=1
 
-/external_sd   vfat      /dev/block/mmcblk1p1 		flags=display="Micro SDcard";storage;wipeingui;removable
+/external_sd   auto      /dev/block/mmcblk1p1 		flags=display="Micro SDcard";storage;wipeingui;removable
 
-/usbdisk	   vfat		 /dev/block/sda1	/dev/block/sda	flags=display="USB-OTG";storage;removable
+/usbdisk	   auto		 /dev/block/sda1	/dev/block/sda	flags=display="USB-OTG";storage;removable

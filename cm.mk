@@ -24,8 +24,13 @@ PRODUCT_NAME := cm_nx512j
 BOARD_VENDOR := zte
 PRODUCT_DEVICE := nx512j
 
+
 # CMHW
-BOARD_HARDWARE_CLASS := device/zte/nx512j/cmhw
+BOARD_USES_CYANOGEN_HARDWARE := true
+BOARD_HARDWARE_CLASS += hardware/cyanogen/cmhw
+BOARD_HARDWARE_CLASS += device/zte/nx512j/cmhw
+TARGET_TAP_TO_WAKE_NODE := "/data/tp/easy_wakeup_gesture"
+
 
 PRODUCT_GMS_CLIENTID_BASE := android-zte
 
