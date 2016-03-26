@@ -241,6 +241,10 @@ PRODUCT_PACKAGES += \
     FMRadio \
     libfmjni
 
+# Snapdragon camera
+#PRODUCT_PACKAGES += \
+#    Snap
+
 # GPS
 PRODUCT_PACKAGES += \
     gps.msm8916
@@ -353,5 +357,14 @@ PRODUCT_PACKAGES += \
 PRODUCT_DEFAULT_PROPERTY_OVERRIDES += \
     persist.sys.usb.config=mtp
 
+# art
+PRODUCT_PROPERTY_OVERRIDES += \
+    dalvik.vm.dex2oat-swap=false \
+    dalvik.vm.heapminfree=2m
+
+# Camera
+PRODUCT_PROPERTY_OVERRIDES += \
+    camera2.portability.force_api=1
+
 $(call inherit-product, frameworks/native/build/phone-xhdpi-2048-dalvik-heap.mk)
-$(call inherit-product, frameworks/native/build/phone-xxhdpi-2048-hwui-memory.mk)
+# $(call inherit-product, frameworks/native/build/phone-xxhdpi-2048-hwui-memory.mk)

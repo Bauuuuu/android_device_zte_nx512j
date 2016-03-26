@@ -38,4 +38,5 @@ IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 
     <!-- When true, show RSSI instead of SNR. -->
     <bool name="config_showRsrpSignalLevelforLTE">true</bool>
+
 </resources>

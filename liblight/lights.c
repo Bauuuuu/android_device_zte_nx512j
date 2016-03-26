@@ -54,6 +54,12 @@ static struct light_state_t g_battery;
 #define AW_FADE_OFF_STEP 5
 #define AW_FADE_CYCLE	6
 
+#define L_NOTIFICATION  0x01
+#define L_BATTERY       0x02
+#define L_BUTTONS       0x04
+#define L_ATTENTION     0x08
+#define L_NONE          0xFF //255
+
 const char *const LCD_FILE
         = "/sys/class/leds/lcd-backlight/brightness";
 
@@ -74,6 +80,9 @@ char const *const BATTERY_CAPACITY
 
 char const *const BATTERY_CHARGING_STATUS
         = "/sys/class/power_supply/battery/status";
+
+int btn_state = 0;
+int is_charging = 0;
 
 /**
  * device methods
@@ -130,6 +139,28 @@ write_str(char const* path, char *value)
 }
 
 static int
+read_int(char const* path, int *value)
+{
+    int fd;
+    static int already_warned = 0;
+
+    fd = open(path, O_RDONLY);
+    if (fd >= 0) {
+        char buffer[20];
+        int amt = read(fd, buffer, 20);
+        sscanf(buffer, "%d\n", value);
+        close(fd);
+        return amt == -1 ? -errno : 0;
+    } else {
+        if (already_warned == 0) {
+            ALOGD("read_int failed to open %s\n", path);
+            already_warned = 1;
+        }
+        return -errno;
+    }
+}
+
+static int
 is_lit(struct light_state_t const* state)
 {
     return state->color & 0x00ffffff;
@@ -145,17 +176,13 @@ rgb_to_brightness(const struct light_state_t *state)
 }
 
 static int
-set_speaker_light_locked(struct light_device_t *dev,
+set_speaker_light_locked(int event,
         struct light_state_t const* state)
 {
     int onMS, offMS;
     unsigned int colorRGB;
     char buffer[25];
-
-    if(!dev) {
-        return -1;
-    }
-
+    int brightness;
 
     if (state == NULL) {
 	ALOGV("disabling buttons backlight\n");
@@ -164,19 +191,34 @@ set_speaker_light_locked(struct light_device_t *dev,
         return 0;
     }
 
+    brightness = rgb_to_brightness(state);
+    ALOGD("set_speaker_light_locked mode=%d brightnsS=%d\n", state->flashMode, brightness);
+
     write_int(LED_OUTN, 0);
     write_int(LED_MODE, 0);
     write_int(LED_OUTN, HOME_MASK);
-
 
     if(state->flashMode == LIGHT_FLASH_TIMED) {
             onMS = state->flashOnMS;
             offMS = state->flashOffMS;
     } else {
-//	    write_str(LED_FADE, "4 0 5");
-//	    write_str(LED_GRADE, "200 200");
-//	    write_int(LED_MODE, AW_CONST_ON);
+            if(event == L_BATTERY && brightness != 0){  //battery charging
+                char charging_status[15];
+                FILE* fp = fopen(BATTERY_CHARGING_STATUS, "rb");
+                fgets(charging_status, 14, fp);
+                fclose(fp);
+                if (strstr(charging_status, "Charging") != NULL) {
+                    onMS = 500;
+                    offMS = 2000;
+                    is_charging = 1;
+                } else {
+                    return 0;
+                    }
+            } else {
+                if(brightness == 28 || brightness == 0)    // battery charged or disconnected
+                    is_charging = 0;
 	    return 0;
+            }
     }
 
     ALOGD("set_speaker_light_locked mode %d,  onMS=%d, offMS=%d\n",
@@ -236,13 +278,12 @@ set_speaker_light_locked(struct light_device_t *dev,
 static void
 handle_speaker_light_locked(struct light_device_t *dev)
 {
-    set_speaker_light_locked(dev, NULL);
     if (is_lit(&g_attention)) {
-        set_speaker_light_locked(dev, &g_attention);
+        set_speaker_light_locked(L_ATTENTION, &g_attention);
     } else if (is_lit(&g_notification)) {
-        set_speaker_light_locked(dev, &g_notification);
+        set_speaker_light_locked(L_NOTIFICATION, &g_notification);
     } else {
-        set_speaker_light_locked(dev, &g_battery);
+        set_speaker_light_locked(L_BATTERY, &g_battery);
     }
 }
 
@@ -266,24 +307,44 @@ static int
 set_light_buttons(struct light_device_t *dev,
         const struct light_state_t *state)
 {
-    int err = 0;
+    int lcd_on, err = 0;
     int brightness = rgb_to_brightness(state);
     char buffer[25];
 
     if(brightness > 200)
 	brightness = 200;
 
-    snprintf(buffer, sizeof(buffer), "%d 200\n", brightness);
-    ALOGD("set_speaker_light_buttons brightness: %d buff: %s\n", brightness, buffer);
+    ALOGD("set_speaker_light_buttons brightness: %d", brightness);
+
+//    read_int(LCD_FILE, &lcd_on);
 
     pthread_mutex_lock(&g_lock);
 
-    write_int(LED_OUTN, 0);
-    write_int(LED_MODE, 0);
-    write_int(LED_OUTN, ALL_MASK);
-    write_str(LED_FADE, "4 0 5");
-    write_str(LED_GRADE, buffer);
-    write_int(LED_MODE, AW_CONST_ON);
+//    write_int(LED_OUTN, 0);
+//    write_int(LED_MODE, 0);
+
+    if(brightness == 0 && is_charging == 1){    // buttons on & charging
+        write_int(LED_OUTN, 0);
+        write_int(LED_MODE, 0);
+
+        write_int(LED_OUTN, HOME_MASK);
+        write_str(LED_FADE, "4 2 2");
+        write_str(LED_GRADE, "0 200");
+        write_int(LED_MODE, AW_FADE_AUTO);
+        btn_state = 0;
+    } else if(brightness != 0 && !btn_state) {                // turn buttons on
+        write_int(LED_OUTN, ALL_MASK);
+        write_str(LED_FADE, "1");
+        write_int(LED_GRADE, brightness);
+        write_int(LED_MODE, AW_CONST_ON);
+        btn_state = 1;
+    } else if(brightness == 0 && btn_state){
+        write_int(LED_OUTN, ALL_MASK);
+        write_str(LED_FADE, "1");
+        write_int(LED_GRADE, brightness);
+        write_int(LED_MODE, AW_POWER_OFF);
+        btn_state = 0;
+    }
 
     pthread_mutex_unlock(&g_lock);
 
@@ -401,7 +462,7 @@ struct hw_module_t HAL_MODULE_INFO_SYM = {
     .version_major = 1,
     .version_minor = 0,
     .id = LIGHTS_HARDWARE_MODULE_ID,
-    .name = "NX512J Lights Module v1.0",
+    .name = "NX512J Lights Module v1.1",
     .author = "faust93 at monumentum@gmail.com",
     .methods = &lights_module_methods,
 };

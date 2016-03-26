@@ -34,7 +34,7 @@ on early-init
     insmod /sbin/qdrbg_module.ko
 
 on init
-    export LD_SHIM_LIBS "/system/lib/libcrypto.so|libboringssl-compat.so:/system/vendor/lib/libmmcamera2_sensor_modules.so|libzte_camera.so:/system/vendor/lib/libmmcamera2_stats_modules.so|libzte_camera.so:/system/lib64/libcrypto.so|libboringssl-compat.so:/system/vendor/lib64/egl/libEGL_adreno.so|libboringssl-compat.so:/system/vendor/lib64/libcne.so|libril_shim.so"
+    export LD_SHIM_LIBS "/system/lib/libcrypto.so|libboringssl-compat.so:/system/vendor/lib/libmmcamera2_sensor_modules.so|libzte_camera.so:/system/lib/libbuffer_manager.so|libzte_camera.so:/system/vendor/lib/libmmcamera2_stats_modules.so|libzte_camera.so:/system/lib64/libcrypto.so|libboringssl-compat.so:/system/vendor/lib64/egl/libEGL_adreno.so|libboringssl-compat.so:/system/vendor/lib64/libcne.so|libril_shim.so"
 
     setprop persist.powermo.disfeature " "
 
@@ -587,7 +587,7 @@ service qcom-c_core-sh /system/bin/sh /init.qcom.class_core.sh
     oneshot
 
 service qcom-c_main-sh /system/bin/sh /init.class_main.sh
-    class main
+    class late_start
     user root
     oneshot
 
@@ -1123,9 +1123,11 @@ on property:persist.sys.ap.restart_level=1
 # Addde by Song LinHua 2014.12.18 end
 
 service msm_irqbalance /system/bin/msm_irqbalance -f /system/vendor/etc/msm_irqbalance.conf
+    socket msm_irqbalance seqpacket 660 root system
     class core
     user root
     group root
+    writepid /dev/cpuset/system-background/tasks
     disabled
 
 
@@ -1136,10 +1138,10 @@ service power_engine /system/bin/power_engine
     disabled
 
 #dynamic start cpu1-2
-on property:persist.sys.power_ctrl=1
-    start power_engine
-on property:persist.sys.power_ctrl=0
-    stop power_engine
+#on property:persist.sys.power_ctrl=1
+#    start power_engine
+#on property:persist.sys.power_ctrl=0
+#    stop power_engine
 
 #start the compass servie
 service akmd09911 /system/bin/akmd09911

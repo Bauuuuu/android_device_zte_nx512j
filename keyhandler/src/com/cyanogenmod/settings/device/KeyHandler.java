@@ -74,6 +74,18 @@ public class KeyHandler implements DeviceKeyHandler {
         }
     };
 
+//    public boolean handleKeyEvent(KeyEvent event, DeviceHandlerCallback callback) {
+//        boolean consumed = false;
+//        switch(event.getScanCode()) {
+//        case KEY_DOUBLE_TAP:
+//            if (!mPowerManager.isScreenOn()) {
+//                mPowerManager.wakeUp(SystemClock.uptimeMillis());
+//            }
+//            consumed = true;
+//            break;
+//        }
+//        return consumed;
+//    }
 
     public boolean handleKeyEvent(KeyEvent event) {
         boolean consumed = false;
