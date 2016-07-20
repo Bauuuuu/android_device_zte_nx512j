@@ -1,4 +1,4 @@
-# Copyright (C) 2014 The CyanogenMod Project
+# Copyright (C) 2016 
 #
 # Licensed under the Apache License, Version 2.0 (the "License");
 # you may not use this file except in compliance with the License.
@@ -14,23 +14,23 @@
 
 $(call inherit-product, device/zte/nx512j/full_nx512j.mk)
 
+# Inherit common product files.
+$(call inherit-product, vendor/krexus/products/common.mk)
 
+# Inherit vendor specific product files.
+$(call inherit-product, vendor/krexus/products/vendorless.mk)
 
+# Inherit maintainer information (if exists).
+$(call inherit-product-if-exists, device/zte/nx512j/krexus_maintainer.mk)
 
-
-PRODUCT_NAME := krexus_nx512j
-BOARD_VENDOR := nubia
-TARGET_VENDOR := nubia
 PRODUCT_DEVICE := nx512j
-
-
-
-
+PRODUCT_NAME := krexus_nx512j
+PRODUCT_BRAND := zte
+PRODUCT_MODEL := Z9 Nax
+PRODUCT_MANUFACTURER := zte
 
 PRODUCT_GMS_CLIENTID_BASE := android-zte
 
-TARGET_VENDOR_PRODUCT_NAME := NX512J
-TARGET_VENDOR_DEVICE_NAME := NX512J
-PRODUCT_BUILD_PROP_OVERRIDES += TARGET_DEVICE=NX512J PRODUCT_NAME=NX512J
-
+PRODUCT_BUILD_PROP_OVERRIDES += \
+    PRODUCT_NAME=nx512j
 
