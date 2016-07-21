@@ -15,13 +15,7 @@
 $(call inherit-product, device/zte/nx512j/full_nx512j.mk)
 
 # Inherit common product files.
-$(call inherit-product, vendor/krexus/products/common.mk)
-
-# Inherit vendor specific product files.
-$(call inherit-product, vendor/krexus/products/vendorless.mk)
-
-# Inherit maintainer information (if exists).
-$(call inherit-product-if-exists, device/zte/nx512j/krexus_maintainer.mk)
+$(call inherit-product, vendor/aosp/common.mk)
 
 PRODUCT_DEVICE := nx512j
 PRODUCT_NAME := krexus_nx512j
