@@ -15,4 +15,4 @@
 
 PRODUCT_MAKEFILES := \
     $(LOCAL_DIR)/full_nx512j.mk \
-$(LOCAL_DIR)/krexus_nx512j.mk
+	$(LOCAL_DIR)/aosp_nx512j.mk

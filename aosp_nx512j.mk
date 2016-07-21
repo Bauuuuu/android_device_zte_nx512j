@@ -18,7 +18,7 @@ $(call inherit-product, device/zte/nx512j/full_nx512j.mk)
 $(call inherit-product, vendor/aosp/common.mk)
 
 PRODUCT_DEVICE := nx512j
-PRODUCT_NAME := krexus_nx512j
+PRODUCT_NAME := aosp_nx512j
 PRODUCT_BRAND := zte
 PRODUCT_MODEL := Z9 Nax
 PRODUCT_MANUFACTURER := zte
