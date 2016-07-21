@@ -26,7 +26,7 @@ $(call inherit-product-if-exists, device/zte/nx512j/krexus_maintainer.mk)
 PRODUCT_DEVICE := nx512j
 PRODUCT_NAME := krexus_nx512j
 PRODUCT_BRAND := zte
-PRODUCT_MODEL := Z9 Nax
+PRODUCT_MODEL := Z9 Max
 PRODUCT_MANUFACTURER := zte
 
 PRODUCT_GMS_CLIENTID_BASE := android-zte
