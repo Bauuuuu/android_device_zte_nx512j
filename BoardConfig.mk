@@ -20,7 +20,7 @@ TARGET_SPECIFIC_HEADER_PATH := $(DEVICE_PATH)/include
 PRODUCT_COPY_FILES := $(filter-out frameworks/base/data/keyboards/Generic.kl:system/usr/keylayout/Generic.kl , $(PRODUCT_COPY_FILES))
 
 # Assert
-TARGET_OTA_ASSERT_DEVICE := NX512J,nx512j,Nx512J,NX512j
+TARGET_OTA_ASSERT_DEVICE := nx512J,NX512J,Nx512J,NX512j
 
 # Architecture
 TARGET_ARCH := arm64
@@ -58,7 +58,7 @@ TARGET_NO_BOOTLOADER := true
 # Kernel
 #BOARD_CUSTOM_BOOTIMG_MK := $(DEVICE_PATH)/mkbootimg.mk
 BOARD_KERNEL_BASE := 0x80000000
-BOARD_KERNEL_CMDLINE := console=null androidboot.console=ttyHSL0 boot_cpus=0,3,4,7 androidboot.hardware=qcom msm_rtb.filter=0x237 ehci-hcd.park=3 androidboot.bootdevice=7824900.sdhci lpm_levels.sleep_disabled=1 sched_enable_hmp=1
+BOARD_KERNEL_CMDLINE := console=null androidboot.console=ttyHSL0 boot_cpus=0,3,4,7 androidboot.hardware=qcom msm_rtb.filter=0x237 ehci-hcd.park=3 androidboot.bootdevice=7824900.sdhci lpm_levels.sleep_disabled=1 sched_enable_hmp=1 androidboot.selinux=permissive
 BOARD_KERNEL_PAGESIZE := 2048
 BOARD_KERNEL_SEPARATED_DT := true
 BOARD_KERNEL_TAGS_OFFSET := 0x00000100
@@ -68,10 +68,10 @@ TARGET_KERNEL_ARCH := arm64
 TARGET_KERNEL_CROSS_COMPILE_PREFIX := aarch64-linux-android-
 TARGET_KERNEL_HEADER_ARCH := arm64
 TARGET_USES_UNCOMPRESSED_KERNEL := true
-TARGET_KERNEL_CONFIG := f93-NX512J_defconfig
+TARGET_KERNEL_CONFIG := nx512j_defconfig
 
 # Properties
-#TARGET_SYSTEM_PROP += $(DEVICE_PATH)/system.prop
+TARGET_SYSTEM_PROP += $(DEVICE_PATH)/system.prop
 
 # Audio
 AUDIO_FEATURE_ENABLED_KPI_OPTIMIZE := true
@@ -136,7 +136,10 @@ TARGET_GPS_HAL_PATH := $(DEVICE_PATH)/gps
 TARGET_NO_RPC := true
 
 # Init
+#TARGET_INIT_VENDOR_LIB := libinit_msm
 TARGET_PLATFORM_DEVICE_BASE := /devices/soc.0/
+TARGET_INIT_VENDOR_LIB := libinit_msm8916
+TARGET_RECOVERY_DEVICE_MODULES := libinit_msm8916
 
 #ANDROID_COMPILE_WITH_JACK := false
 
@@ -199,7 +202,7 @@ BOARD_SEPOLICY_DIRS += \
 # TWRP Recovery
 RECOVERY_GRAPHICS_USE_LINELENGTH := true
 RECOVERY_SDCARD_ON_DATA := true
-TW_TARGET_USES_QCOM_BSP := true
+#TW_TARGET_USES_QCOM_BSP := true
 TW_INCLUDE_L_CRYPTO := true
 TW_NEW_ION_HEAP := true
 TW_FLASH_FROM_STORAGE := true
@@ -209,9 +212,8 @@ TW_EXTERNAL_STORAGE_PATH := "/external_sd"
 TW_EXTERNAL_STORAGE_MOUNT_POINT := "external_sd"
 TW_DEFAULT_EXTERNAL_STORAGE := true
 TW_BRIGHTNESS_PATH := /sys/class/leds/lcd-backlight/brightness
+#TW_USE_TOOLBOX := true
 TARGET_RECOVERY_QCOM_RTC_FIX := true
-BOARD_SUPPRESS_SECURE_ERASE := true
-TARGET_USERIMAGES_USE_F2FS := true
 
 TARGET_REQUIRES_SYNCHRONOUS_SETSURFACE := true
 
@@ -251,9 +253,6 @@ MR_KEXEC_MEM_MIN := 0x0
 MR_DEVICE_HOOKS := $(DEVICE_PATH)/multirom/mr_hooks.c
 MR_DEVICE_HOOKS_VER := 5
 TARGET_RECOVERY_IS_MULTIROM := true
-
-# disable block-based ota
-BLOCK_BASED_OTA :=false
 
 # inherit from the proprietary version
 -include vendor/zte/nx512j/BoardConfigVendor.mk
