@@ -71,7 +71,7 @@ TARGET_USES_UNCOMPRESSED_KERNEL := true
 TARGET_KERNEL_CONFIG := nx512j_defconfig
 
 # Properties
-TARGET_SYSTEM_PROP += $(DEVICE_PATH)/system.prop
+TARGET_SYSTEM_PROP += device/zte/nx512j/system.prop
 
 # Audio
 AUDIO_FEATURE_ENABLED_KPI_OPTIMIZE := true
