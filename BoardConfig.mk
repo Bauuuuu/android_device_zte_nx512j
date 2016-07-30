@@ -202,13 +202,18 @@ TARGET_GLOBAL_CPPFLAGS += -DANDROID_MULTI_SIM
 include device/qcom/sepolicy/sepolicy.mk
 
 BOARD_SEPOLICY_DIRS += \
-    $(DEVICE_PATH)/sepolicy
+    device/zte/nx512j/sepolicy
 
 BOARD_SEPOLICY_UNION += \
     bluetooth_loader.te \
     file_contexts \
     mm-qcamerad.te \
-    property_contexts 
+    property_contexts \
+    healthd.te \
+    init.te \
+    kernel.te \
+    qti_init_shell.te \
+    system_server.te
 
 # TWRP Recovery
 RECOVERY_GRAPHICS_USE_LINELENGTH := true
