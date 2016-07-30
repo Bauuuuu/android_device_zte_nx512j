@@ -204,6 +204,12 @@ include device/qcom/sepolicy/sepolicy.mk
 BOARD_SEPOLICY_DIRS += \
     $(DEVICE_PATH)/sepolicy
 
+BOARD_SEPOLICY_UNION += \
+    bluetooth_loader.te \
+    file_contexts \
+    mm-qcamerad.te \
+    property_contexts 
+
 # TWRP Recovery
 RECOVERY_GRAPHICS_USE_LINELENGTH := true
 RECOVERY_SDCARD_ON_DATA := true
