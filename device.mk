@@ -21,7 +21,7 @@ $(call inherit-product-if-exists, vendor/zte/nx512j/nx512j-vendor.mk)
 DEVICE_PACKAGE_OVERLAYS += $(DEVICE_PATH)/overlay
 
 # Fall back to lower resolution if xxhdpi bitmaps dont exist
-PRODUCT_AAPT_CONFIG := normal hdpi xhdpi xxhdpi
+PRODUCT_AAPT_CONFIG := normal
 PRODUCT_AAPT_PREF_CONFIG := xxhdpi
 
 # Boot animation
