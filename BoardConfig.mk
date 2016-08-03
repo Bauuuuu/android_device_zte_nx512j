@@ -223,6 +223,9 @@ TW_BRIGHTNESS_PATH := /sys/class/leds/lcd-backlight/brightness
 #TW_USE_TOOLBOX := true
 TARGET_RECOVERY_QCOM_RTC_FIX := true
 
+ #to build twrp , just remove '#'
+ #RECOVERY_VARIANT := twrp
+
 TARGET_REQUIRES_SYNCHRONOUS_SETSURFACE := true
 
 # Video
