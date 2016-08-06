@@ -111,6 +111,9 @@ COMMON_GLOBAL_CFLAGS += -DCAMERA_VENDOR_L_COMPAT
 TARGET_HW_DISK_ENCRYPTION := true
 TARGET_NO_SD_ADOPT_ENCRYPTION := true
 
+#Remove # if cryptfs path not detected
+#TARGET_CRYPTFS_HW_PATH := device/qcom/common/cryptfs_hw
+
 # Graphics
 OVERRIDE_RS_DRIVER := libRSDriver_adreno.so
 MAX_EGL_CACHE_KEY_SIZE := 12*1024
