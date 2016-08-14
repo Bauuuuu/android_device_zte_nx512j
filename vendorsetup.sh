@@ -1,1 +1,1 @@
-add_lunch_combo aosp_nx512j-userdebug
+add_lunch_combo slim_nx512j-userdebug
