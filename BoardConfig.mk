@@ -52,8 +52,7 @@ TARGET_BOARD_PLATFORM := msm8916
 TARGET_BOARD_PLATFORM_GPU := qcom-adreno405
 #USE_CLANG_PLATFORM_BUILD := true
 
-#CMHW
-BOARD_HARDWARE_CLASS += device/zte/nx512j/cmhw
+#DT2W
 TARGET_TAP_TO_WAKE_NODE := "/data/tp/easy_wakeup_gesture"
 
 # Bootloader
