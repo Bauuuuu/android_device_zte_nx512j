@@ -1,4 +1,4 @@
-# Copyright (C) 2014 The CyanogenMod Project
+# Copyright (C) 2016 
 #
 # Licensed under the Apache License, Version 2.0 (the "License");
 # you may not use this file except in compliance with the License.
@@ -20,15 +20,17 @@ $(call inherit-product, vendor/slim/config/nfc_enhanced.mk)
 # Inherit some common slim stuff.
 $(call inherit-product, vendor/slim/config/common_full_phone.mk)
 
-PRODUCT_NAME := slim_nx512j
-BOARD_VENDOR := zte
+# Release name
+PRODUCT_RELEASE_NAME := nx512j
 PRODUCT_DEVICE := nx512j
+PRODUCT_NAME := slim_nx512j
+PRODUCT_BRAND := ZTE
+PRODUCT_MODEL := Z9 Max
+PRODUCT_MANUFACTURER := ZTE
 
-
-# slimHW
+#
 BOARD_USES_CYANOGEN_HARDWARE := true
 BOARD_HARDWARE_CLASS += hardware/cyanogen/cmhw
-
 
 
 PRODUCT_GMS_CLIENTID_BASE := android-zte
