@@ -366,6 +366,10 @@ PRODUCT_PROPERTY_OVERRIDES += \
 PRODUCT_PROPERTY_OVERRIDES += \
     camera2.portability.force_api=1
 
+# drmservice prop
+	PRODUCT_PROPERTY_OVERRIDES += \
+	drm.service.enabled=true
+
 # facelock properties
 PRODUCT_PROPERTY_OVERRIDES += \
     ro.facelock.black_timeout=400 \
