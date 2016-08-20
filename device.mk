@@ -193,7 +193,8 @@ PRODUCT_PACKAGES += \
 # Camera
 PRODUCT_PACKAGES += \
     camera.msm8916 \
-    libmm-qcamera
+    libmm-qcamera \
+
 
 # Charger
 PRODUCT_PACKAGES += \
@@ -241,9 +242,12 @@ PRODUCT_PACKAGES += \
     FMRadio \
     libfmjni
 
-# Snapdragon camera
-#PRODUCT_PACKAGES += \
-#    Snap
+#Snapdragon camera
+PRODUCT_PACKAGES += \
+    Snap
+
+PRODUCT_PROPERTY_OVERRIDES += \
+    persist.camera.cpp.duplication=false
 
 # GPS
 PRODUCT_PACKAGES += \
