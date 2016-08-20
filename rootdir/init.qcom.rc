@@ -1177,6 +1177,13 @@ service FontsWilluse /system/bin/sh /system/etc/fonts_check.sh
     group root
     oneshot
 
+# ztemt add for poweroff alarm
+service poad /system/bin/poad
+    class main
+    user root
+    group root
+    oneshot
+
 service wirelesstest /system/bin/wirelesstest
     class main
     socket wirelesstest stream 600 system system
