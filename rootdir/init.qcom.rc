@@ -1183,7 +1183,8 @@ service poad /system/bin/poad
     user root
     group root
     oneshot
-
+# Enable power-on alarm
+    write /sys/module/qpnp_rtc/parameters/poweron_alarm 1
 service wirelesstest /system/bin/wirelesstest
     class main
     socket wirelesstest stream 600 system system
