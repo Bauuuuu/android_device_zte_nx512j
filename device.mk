@@ -108,6 +108,10 @@ PRODUCT_COPY_FILES += \
     $(DEVICE_PATH)/configs/media_codecs.xml:system/etc/media_codecs.xml \
     $(DEVICE_PATH)/configs/media_profiles.xml:system/etc/media_profiles.xml
 
+# drmservice prop
+	PRODUCT_PROPERTY_OVERRIDES += \
+	drm.service.enabled=true
+
 # TWRP Recovery
 PRODUCT_COPY_FILES += \
     $(DEVICE_PATH)/twrp.fstab:recovery/root/etc/twrp.fstab
