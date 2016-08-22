@@ -73,6 +73,10 @@ PRODUCT_COPY_FILES += \
     $(DEVICE_PATH)/audio/aanc_tuning_mixer.txt:system/etc/aanc_tuning_mixer.txt \
     $(DEVICE_PATH)/audio/sound_trigger_mixer_paths.xml:system/etc/sound_trigger_mixer_paths.xml	
 
+# Gello
+ PRODUCT_PACKAGES += \
+     Gello
+
 # GPS
 PRODUCT_COPY_FILES += \
     $(DEVICE_PATH)/gps/etc/flp.conf:system/etc/flp.conf \
@@ -199,10 +203,6 @@ PRODUCT_PACKAGES += \
     camera.msm8916 \
     libmm-qcamera
 
-
-# Charger
-PRODUCT_PACKAGES += \
-    charger_res_images
 
 # CMHW JNI
 PRODUCT_PACKAGES += \
