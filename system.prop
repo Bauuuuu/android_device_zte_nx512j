@@ -48,6 +48,9 @@ vidc.enc.narrow.searchrange=1
 # lcd density
 ro.sf.lcd_density=480
 
+# Storage
+ro.sdcardfs.enable=true
+
 # Bluetooth
 ro.qualcomm.bt.hci_transport=smd
 bluetooth.hfp.client=1
