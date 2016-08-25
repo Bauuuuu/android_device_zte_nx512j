@@ -27,18 +27,14 @@ TARGET_ARCH := arm64
 TARGET_ARCH_VARIANT := armv8-a
 TARGET_CPU_ABI := arm64-v8a
 TARGET_CPU_ABI2 :=
-TARGET_CPU_VARIANT := generic
+TARGET_CPU_VARIANT := cortex-a53
 
 TARGET_2ND_ARCH := arm
 TARGET_2ND_ARCH_VARIANT := armv7-a-neon
 TARGET_2ND_CPU_ABI := armeabi-v7a
 TARGET_2ND_CPU_ABI2 := armeabi
 TARGET_2ND_CPU_VARIANT := cortex-a53
-TARGET_GLOBAL_CFLAGS += -mfpu=neon -mfloat-abi=softfp
-TARGET_GLOBAL_CPPFLAGS += -mfpu=neon -mfloat-abi=softfp
 
-# CPU
-TARGET_CPU_CORTEX_A53 := true
 
 ENABLE_CPUSETS := true
 
@@ -154,8 +150,7 @@ TARGET_RECOVERY_DEVICE_MODULES := libinit_msm8916
 # Lights
 TARGET_PROVIDES_LIBLIGHT := true
 
-# Malloc
-MALLOC_IMPL := dlmalloc
+
 
 # Partitions
 BOARD_FLASH_BLOCK_SIZE := 131072
