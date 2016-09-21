@@ -1,0 +1,8 @@
+allow qti_init_shell graphics_device:chr_file getattr;
+allow qti_init_shell system_data_file:lnk_file { create unlink };
+allow qti_init_shell bluetooth_data_file:file getattr;
+allow qti_init_shell bluetooth_loader_exec:file open;
+allow qti_init_shell bluetooth_loader_exec:file read;
+allow qti_init_shell btnvtool_exec:file { read getattr open execute execute_no_trans };
+allow qti_init_shell cgroup:dir create;
+allow qti_init_shell ctl_default_prop:property_service set;

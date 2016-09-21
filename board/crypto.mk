@@ -1,0 +1,2 @@
+# Crypto
+TARGET_NO_SD_ADOPT_ENCRYPTION := true

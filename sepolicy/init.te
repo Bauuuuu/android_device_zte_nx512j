@@ -1,0 +1,13 @@
+allow init debugfs:dir mounton;
+allow init mpctl_data_file:file append;
+allow init mpctl_socket:sock_file write;
+allow init property_socket:sock_file write;
+allow init qmuxd:unix_stream_socket connectto;
+allow init qmuxd_socket:sock_file write;
+allow init rootfs:chr_file execute_no_trans;
+allow init self:socket { read write create ioctl };
+allow init smem_log_device:chr_file { write ioctl };
+allow init socket_device:sock_file { write create setattr };
+allow init sysfs_mpdecision:file getattr;
+allow init system_file:chr_file execute_no_trans;
+allow init thermal_device:chr_file { write ioctl };
