@@ -18,7 +18,7 @@ DEVICE_PATH := device/zte/nx512j
 include device/cyanogen/msm8916-common/BoardConfigCommon.mk
 
 include device/zte/nx512j/board/*.mk
-
+TARGET_SPECIFIC_HEADER_PATH := $(DEVICE_PATH)/include
 # Assert
 TARGET_OTA_ASSERT_DEVICE := nx512J,NX512J,Nx512J,NX512j
 
