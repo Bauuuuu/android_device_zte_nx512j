@@ -4,7 +4,6 @@ app/shutdownlistener/shutdownlistener.apk
 bin/adsprpcd
 bin/akmd09911
 bin/btnvtool
-bin/cnd
 bin/cnss-daemon
 bin/dmapp
 bin/fm_qsoc_patches

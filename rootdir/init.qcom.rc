@@ -615,9 +615,6 @@ service fm_dl /system/bin/sh /system/etc/init.qcom.fm.sh
     disabled
     oneshot
 
-service cnd /system/bin/cnd
-    class late_start
-    socket cnd stream 660 root inet
 
 service dpmd /system/bin/dpmd
     class late_start
@@ -631,6 +628,7 @@ service irsc_util /system/bin/irsc_util "/etc/sec_config"
 service rmt_storage /system/bin/rmt_storage
     class core
     user root
+    group wakelock
     disabled
 
 service rfs_access /system/bin/rfs_access
@@ -732,11 +730,12 @@ service qmiproxy /system/bin/qmiproxy
 service qmuxd /system/bin/qmuxd
     class main
     user root
-    group radio audio bluetooth gps nfc qcom_diag
+    group radio audio bluetooth gps qcom_diag wakelock
     disabled
 
 service netmgrd /system/bin/netmgrd
     class main
+    group system wakelock
     disabled
 
 service ipacm-diag /system/bin/ipacm-diag
