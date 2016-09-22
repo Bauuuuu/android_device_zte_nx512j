@@ -14,6 +14,8 @@
 
 $(call inherit-product, device/zte/nx512j/full_nx512j.mk)
 
+DISABLE_SLIM_FRAMEWORK := true
+
 # Enhanced NFC
 $(call inherit-product, vendor/slim/config/nfc_enhanced.mk)
 
