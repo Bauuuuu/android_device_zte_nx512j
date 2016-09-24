@@ -23,13 +23,11 @@ $(call inherit-product, vendor/broken/config/common_full_phone.mk)
 PRODUCT_NAME := broken_nx512j
 BOARD_VENDOR := zte
 PRODUCT_DEVICE := nx512j
-FUCK_XDA := true
+
 
 # CMHW
 BOARD_USES_CYANOGEN_HARDWARE := true
 BOARD_HARDWARE_CLASS += hardware/cyanogen/cmhw
-
-
 
 PRODUCT_GMS_CLIENTID_BASE := android-zte
 

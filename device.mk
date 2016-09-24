@@ -20,6 +20,8 @@ $(call inherit-product-if-exists, vendor/zte/nx512j/nx512j-vendor.mk)
 # Overlay
 DEVICE_PACKAGE_OVERLAYS += $(DEVICE_PATH)/overlay
 
+FUCK_XDA := true
+
 # Fall back to lower resolution if xxhdpi bitmaps dont exist
 PRODUCT_AAPT_CONFIG := normal
 PRODUCT_AAPT_PREF_CONFIG := xxhdpi
