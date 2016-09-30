@@ -17,6 +17,8 @@ DEVICE_PATH := device/zte/nx512j
 
 $(call inherit-product-if-exists, vendor/zte/nx512j/nx512j-vendor.mk)
 
+$(shell mkdir -p out/target/product/nx512j/root)
+
 # Overlay
 DEVICE_PACKAGE_OVERLAYS += $(DEVICE_PATH)/overlay
 
