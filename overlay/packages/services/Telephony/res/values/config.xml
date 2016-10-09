@@ -58,6 +58,7 @@
         <item>@string/preferred_network_mode_wcdma_only_choice</item>
         <item>@string/preferred_network_mode_gsm_wcdma_lte_choice</item>
         <item>@string/preferred_network_mode_lte_wcdma_choice</item>
+        <item>@string/preferred_network_mode_lte_choice</item>
     </string-array>
 
     <string-array name="enabled_networks_values" translatable="false">
@@ -66,7 +67,8 @@
         <item>"0"</item>
         <item>"2"</item>
         <item>"9"</item>
-        <item>"10"</item>
+        <item>"12"</item>
+        <item>"11"</item>
     </string-array>
 
 </resources>
