@@ -152,8 +152,7 @@ PRODUCT_COPY_FILES += \
     $(DEVICE_PATH)/configs/hostapd_default.conf:system/etc/hostapd/hostapd_default.conf \
     $(DEVICE_PATH)/configs/hostapd.deny:system/etc/hostapd/hostapd.deny \
     $(DEVICE_PATH)/configs/p2p_supplicant_overlay.conf:system/etc/wifi/p2p_supplicant_overlay.conf \
-    $(DEVICE_PATH)/configs/wpa_supplicant_overlay.conf:system/etc/wifi/wpa_supplicant_overlay.conf \
-    $(DEVICE_PATH)/configs/wpa_supplicant.conf:system/etc/wifi/wpa_supplicant.conf
+    $(DEVICE_PATH)/configs/wpa_supplicant_overlay.conf:system/etc/wifi/wpa_supplicant_overlay.conf
 
 ifeq ($(BOARD_USES_QCNE),true)
 PRODUCT_PACKAGES += \
@@ -174,10 +173,6 @@ PRODUCT_PACKAGES += \
 PRODUCT_COPY_FILES += \
     frameworks/native/data/etc/android.software.midi.xml:system/etc/permissions/android.software.midi.xml
 
-# ifree card needed APNs
-PRODUCT_COPY_FILES += \
-    $(DEVICE_PATH)/configs/apns-conf.xml:system/etc/apns-conf.xml
-
 # Audio
 PRODUCT_PACKAGES += \
     audiod \
@@ -195,10 +190,6 @@ PRODUCT_PACKAGES += \
     camera.msm8916 \
     libmm-qcamera
 
-
-# Charger
-PRODUCT_PACKAGES += \
-    charger_res_images
 
 # CMHW JNI
 PRODUCT_PACKAGES += \
@@ -356,15 +347,11 @@ PRODUCT_PACKAGES += \
     hostapd \
     dhcpcd.conf \
     wpa_supplicant \
+    wpa_supplicant.conf \
     wcnss_service
 
 PRODUCT_DEFAULT_PROPERTY_OVERRIDES += \
     persist.sys.usb.config=mtp
-
-# art
-PRODUCT_PROPERTY_OVERRIDES += \
-    dalvik.vm.dex2oat-swap=false \
-    dalvik.vm.heapminfree=2m
 
 # Camera
 PRODUCT_PROPERTY_OVERRIDES += \
@@ -383,5 +370,5 @@ PRODUCT_PROPERTY_OVERRIDES += \
     ro.facelock.est_max_time=600 \
     ro.facelock.use_intro_anim=false
 
-$(call inherit-product, frameworks/native/build/phone-xhdpi-2048-dalvik-heap.mk)
-# $(call inherit-product, frameworks/native/build/phone-xxhdpi-2048-hwui-memory.mk)
+$(call inherit-product, frameworks/native/build/phone-xxhdpi-2048-dalvik-heap.mk)
+$(call inherit-product, frameworks/native/build/phone-xxhdpi-2048-hwui-memory.mk)

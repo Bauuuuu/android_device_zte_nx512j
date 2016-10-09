@@ -113,7 +113,18 @@ TARGET_NO_SD_ADOPT_ENCRYPTION := true
 #Remove # if cryptfs path not detected
 #TARGET_CRYPTFS_HW_PATH := device/qcom/common/cryptfs_hw
 
+# Enable dex-preoptimization to speed up first boot sequence
+ifeq ($(HOST_OS),linux)
+  ifeq ($(TARGET_BUILD_VARIANT),user)
+    ifeq ($(WITH_DEXPREOPT),)
+      WITH_DEXPREOPT := true
+      WITH_DEXPREOPT_BOOT_IMG_ONLY ?= true
+    endif
+  endif
+endif
+
 # Graphics
+TARGET_FORCE_HWC_FOR_VIRTUAL_DISPLAYS := true
 OVERRIDE_RS_DRIVER := libRSDriver_adreno.so
 MAX_EGL_CACHE_KEY_SIZE := 12*1024
 MAX_EGL_CACHE_SIZE := 2048*1024
@@ -143,12 +154,14 @@ TARGET_GPS_HAL_PATH := $(DEVICE_PATH)/gps
 TARGET_NO_RPC := true
 
 # Init
-#TARGET_INIT_VENDOR_LIB := libinit_msm
+TARGET_INIT_VENDOR_LIB := libinit_nx512j
 TARGET_PLATFORM_DEVICE_BASE := /devices/soc.0/
-TARGET_INIT_VENDOR_LIB := libinit_msm8916
-TARGET_RECOVERY_DEVICE_MODULES := libinit_msm8916
+TARGET_RECOVERY_DEVICE_MODULES := libinit_nx512j
 
 #ANDROID_COMPILE_WITH_JACK := false
+
+# Keymaster
+TARGET_KEYMASTER_WAIT_FOR_QSEE := true
 
 # Lights
 TARGET_PROVIDES_LIBLIGHT := true
@@ -268,6 +281,9 @@ MR_KEXEC_MEM_MIN := 0x0
 MR_DEVICE_HOOKS := $(DEVICE_PATH)/multirom/mr_hooks.c
 MR_DEVICE_HOOKS_VER := 5
 TARGET_RECOVERY_IS_MULTIROM := true
+
+# disable block-based ota
+BLOCK_BASED_OTA :=false
 
 # inherit from the proprietary version
 -include vendor/zte/nx512j/BoardConfigVendor.mk

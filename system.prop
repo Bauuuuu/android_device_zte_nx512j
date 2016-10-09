@@ -23,9 +23,9 @@ persist.radio.rat_on=combine
 ril.subscription.types=NV,RUIM
 telephony.lteOnGsmDevice=1
 telephony.lteOnCdmaDevice=0
-ro.telephony.ril.config=simactivation
+ro.telephony.ril.config=simactivation,sim2gsmonly
 DEVICE_PROVISIONED=1
-ro.telephony.default_network=9
+ro.telephony.default_network=9,1
 persist.radio.multisim.config=dsds
 persist.data.qmi.adb_logmask=0
 ro.ril.multi_rat_capable=true
@@ -75,35 +75,12 @@ mm.disable.sec_smoothstreaming=true
 media.aac_51_output_enabled=true
 drm.service.enabled=1
 audio.offload.disable=1
-#audio.deep_buffer.media=true
+audio.deep_buffer.media=true
 
 # perf
 ro.min_freq_0=960000
 ro.min_freq_4=800000
 ro.vendor.extension_library=libqti-perfd-client.so
-
-# hwui properties
-ro.hwui.texture_cache_size=48
-ro.hwui.texture_cache_flushrate=0.4
-ro.hwui.layer_cache_size=48
-ro.hwui.path_cache_size=32
-ro.hwui.shape_cache_size=2
-ro.hwui.drop_shadow_cache_size=6
-ro.hwui.gradient_cache_size=1
-ro.hwui.text_large_cache_height=1024
-ro.hwui.text_large_cache_width=2048
-ro.hwui.text_small_cache_height=1024
-ro.hwui.text_small_cache_width=1024
-ro.hwui.r_buffer_cache_size=8
-ro.hwui.disable_scissor_opt=true
-ro.hwui.panel_bit_depth=32
-ro.hwui.disable_vsync=false
-ro.hwui.layer_size=1024
-#ro.hwui.render_layers_as_regions=1
-debug.hwui.render_dirty_regions=false
-debug.hwui.show_layers_updates=false
-debug.hwui.show_overdraw=false
-sys.refresh.dirty=1
 
 # Time
 persist.timed.enable=true
