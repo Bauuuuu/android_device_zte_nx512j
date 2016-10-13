@@ -14,8 +14,6 @@
 
 $(call inherit-product, device/zte/nx512j/full_nx512j.mk)
 
-DISABLE_SLIM_FRAMEWORK := true
-
 # Enhanced NFC
 $(call inherit-product, vendor/slim/config/nfc_enhanced.mk)
 
@@ -29,14 +27,9 @@ PRODUCT_NAME := slim_nx512j
 PRODUCT_BRAND := ZTE
 PRODUCT_MODEL := Z9 Max
 PRODUCT_MANUFACTURER := ZTE
-
-#
 BOARD_USES_CYANOGEN_HARDWARE := true
 BOARD_HARDWARE_CLASS += hardware/cyanogen/cmhw
-
-
 PRODUCT_GMS_CLIENTID_BASE := android-zte
-
 TARGET_VENDOR_PRODUCT_NAME := NX512J
 TARGET_VENDOR_DEVICE_NAME := Z9MAX
 PRODUCT_BUILD_PROP_OVERRIDES += TARGET_DEVICE=NX512J PRODUCT_NAME=NX512J
