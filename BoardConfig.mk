@@ -98,6 +98,7 @@ USE_DEVICE_SPECIFIC_CAMERA := true
 # 32-bit or 64-bit), the following line should be deleted
 BOARD_QTI_CAMERA_32BIT_ONLY := true
 BOARD_GLOBAL_CFLAGS += -DCAMERA_VENDOR_L_COMPAT
+TARGET_HAS_LEGACY_CAMERA_HAL1 := true
 
 
 # Chromium

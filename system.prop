@@ -51,6 +51,20 @@ ro.sf.lcd_density=480
 # Bluetooth
 ro.qualcomm.bt.hci_transport=smd
 bluetooth.hfp.client=1
+ro.bluetooth.dun=true
+ro.bluetooth.sap=true
+ro.qualcomm.bluetooth.ftp=true
+ro.qualcomm.bluetooth.hfp=true
+ro.qualcomm.bluetooth.hsp=true
+ro.qualcomm.bluetooth.map=true
+ro.qualcomm.bluetooth.nap=true
+ro.qualcomm.bluetooth.opp=true
+ro.qualcomm.bluetooth.pbap=true
+
+# Camera
+camera2.portability.force_api=1
+media.stagefright.legacyencoder=true
+media.stagefright.less-secure=true
 
 # Display
 sys.hwc.gpu_perf_mode=1
