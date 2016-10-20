@@ -45,7 +45,7 @@ write_makefiles "$MY_DIR"/proprietary-files.txt
 printf '\n%s\n' "ifeq (\$(QCPATH),)" >> "$PRODUCTMK"
 printf '\n%s\n' "ifeq (\$(QCPATH),)" >> "$ANDROIDMK"
 
-write_makefiles "$MY_DIR"/proprietary-files-qc.txt
+write_makefiles "$MY_DIR"/proprietary-files.txt
 
 echo "endif" >> "$PRODUCTMK"
 
