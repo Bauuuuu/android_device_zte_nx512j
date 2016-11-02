@@ -22,7 +22,6 @@ $(call inherit-product, vendor/cm/config/common_full_phone.mk)
 
 PRODUCT_NAME := cm_nx512j
 BOARD_VENDOR := zte
-TARGET_VENDOR := nubia
 PRODUCT_DEVICE := nx512j
 
 

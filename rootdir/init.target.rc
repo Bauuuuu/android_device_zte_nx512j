@@ -60,9 +60,6 @@ service qcamerasvr /system/bin/mm-qcamera-daemon
     user camera
     group camera system inet input graphics
     writepid /dev/cpuset/system-background/tasks
-    
-on init
-    write /sys/module/qpnp_rtc/parameters/poweron_alarm 1
 
 # Allow usb charging to be disabled peristently
 on property:persist.usb.chgdisabled=1
@@ -150,7 +147,6 @@ service wcnss-service /system/bin/wcnss_service
     class main
     user system
     group system wifi radio
-    oneshot
 
 service imsqmidaemon /system/bin/imsqmidaemon
     class main
@@ -196,7 +192,3 @@ service tp_node /system/bin/sh /tp_node.sh
     user root
     group root
     oneshot
-
-    # Adaptive LMK
-    write /sys/module/lowmemorykiller/parameters/enable_adaptive_lmk 1
-    write /sys/module/lowmemorykiller/parameters/vmpressure_file_min 81250
