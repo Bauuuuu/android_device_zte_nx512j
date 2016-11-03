@@ -34,8 +34,8 @@ TARGET_2ND_ARCH_VARIANT := armv7-a-neon
 TARGET_2ND_CPU_ABI := armeabi-v7a
 TARGET_2ND_CPU_ABI2 := armeabi
 TARGET_2ND_CPU_VARIANT := cortex-a53
-TARGET_GLOBAL_CFLAGS += -mfpu=neon -mfloat-abi=softfp
-TARGET_GLOBAL_CPPFLAGS += -mfpu=neon -mfloat-abi=softfp
+BOARD_GLOBAL_CFLAGS += -mfpu=neon -mfloat-abi=softfp
+BOARD_GLOBAL_CPPFLAGS += -mfpu=neon -mfloat-abi=softfp
 
 # CPU
 TARGET_CPU_CORTEX_A53 := true
@@ -100,7 +100,7 @@ USE_DEVICE_SPECIFIC_CAMERA := true
 # Once camera module can run in the native mode of the system (either
 # 32-bit or 64-bit), the following line should be deleted
 BOARD_QTI_CAMERA_32BIT_ONLY := true
-COMMON_GLOBAL_CFLAGS += -DCAMERA_VENDOR_L_COMPAT
+BOARD_GLOBAL_CFLAGS += -DCAMERA_VENDOR_L_COMPAT
 
 # Chromium
 #PRODUCT_PREBUILT_WEBVIEWCHROMIUM := yes
@@ -146,8 +146,7 @@ TARGET_NO_RPC := true
 # Init
 #TARGET_INIT_VENDOR_LIB := libinit_msm
 TARGET_PLATFORM_DEVICE_BASE := /devices/soc.0/
-TARGET_INIT_VENDOR_LIB := libinit_msm8916
-TARGET_RECOVERY_DEVICE_MODULES := libinit_msm8916
+
 
 #ANDROID_COMPILE_WITH_JACK := false
 
@@ -176,8 +175,8 @@ BOARD_USES_QCNE := true
 endif
 BOARD_USES_QCOM_HARDWARE := true
 
-COMMON_GLOBAL_CFLAGS += -DQCOM_BSP
-COMMON_GLOBAL_CFLAGS += -DQCOM_HARDWARE
+BOARD_GLOBAL_CFLAGS += -DQCOM_BSP
+BOARD_GLOBAL_CFLAGS += -DQCOM_HARDWARE
 TARGET_USES_QCOM_BSP := true
 
 # ANT+
