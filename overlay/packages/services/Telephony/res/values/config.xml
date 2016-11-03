@@ -51,14 +51,14 @@
     <!-- Determines if device implements a noise suppression device for in call audio-->
     <bool name="has_in_call_noise_suppression">true</bool>
 
-    <!--string-array name="enabled_networks_choices" translatable="false">
+    <string-array name="enabled_networks_choices" translatable="false">
         <item>@string/preferred_network_mode_gsm_only_choice</item>
         <item>@string/preferred_network_mode_gsm_wcdma_auto_choice</item>
         <item>@string/preferred_network_mode_gsm_wcdma_preferred_choice</item>
         <item>@string/preferred_network_mode_wcdma_only_choice</item>
         <item>@string/preferred_network_mode_gsm_wcdma_lte_choice</item>
         <item>@string/preferred_network_mode_lte_wcdma_choice</item>
-    </string-array-->
+    </string-array>
 
     <string-array name="enabled_networks_values" translatable="false">
         <item>"1"</item>

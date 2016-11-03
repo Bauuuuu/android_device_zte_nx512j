@@ -15,14 +15,13 @@
 $(call inherit-product, device/zte/nx512j/full_nx512j.mk)
 
 # Enhanced NFC
-$(call inherit-product, vendor/du/config/nfc_enhanced.mk)
+$(call inherit-product, vendor/cm/config/nfc_enhanced.mk)
 
 # Inherit some common CM stuff.
-$(call inherit-product, vendor/du/config/common_full_phone.mk)
+$(call inherit-product, vendor/cm/config/common_full_phone.mk)
 
-PRODUCT_NAME := du_nx512j
+PRODUCT_NAME := cm_nx512j
 BOARD_VENDOR := zte
-TARGET_VENDOR := nubia
 PRODUCT_DEVICE := nx512j
 
 

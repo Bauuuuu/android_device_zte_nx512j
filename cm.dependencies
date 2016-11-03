@@ -1,0 +1,50 @@
+[
+  {
+    "remote": "cm",
+    "repository": "android_device_qcom_common",
+    "target_path": "device/qcom/common",
+    "revision": "cm-13.0"
+  },
+  {
+    "remote": "cm",
+    "repository": "android_hardware_qcom_fm",
+    "target_path": "hardware/qcom/fm",
+    "revision": "cm-13.0"
+  },
+  { 
+    "remote": "cm",
+    "repository": "android_external_stlport",
+    "target_path": "external/stlport",
+    "revision": "cm-13.0"
+  },
+  { 
+    "remote": "cm",
+    "repository": "android_external_mm-dash",
+    "target_path": "external/mm-dash",
+    "revision": "cm-13.0"
+  },
+  { 
+    "remote": "cm",
+    "repository": "android_vendor_qcom_opensource_dataservices",
+    "target_path": "vendor/qcom/opensource/dataservices",
+    "revision": "cm-13.0"
+  },
+  { 
+    "remote": "cm",
+    "repository": "android_hardware_qcom_audio",
+    "target_path": "hardware/qcom/audio-caf/msm8916",
+    "revision": "cm-13.0-caf-8916"
+  },
+  { 
+    "remote": "cm",
+    "repository": "android_hardware_qcom_display",
+    "target_path": "hardware/qcom/display-caf/msm8916",
+    "revision": "cm-13.0-caf-8916"
+  },
+  {
+   "remote": "cm",
+   "repository": "android_hardware_qcom_media",
+   "target_path": "hardware/qcom/media-caf/msm8916",
+   "revision": "cm-13.0-caf-8916"
+  }
+]

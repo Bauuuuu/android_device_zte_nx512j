@@ -43,5 +43,5 @@ allow bluetooth_loader qmuxd_socket:sock_file { create setattr getattr write unl
 allow bluetooth_loader qmuxd:unix_stream_socket { connectto };
 
 # btnvtool
-#allow bluetooth_loader btnvtool_exec:file rx_file_perms;
+allow bluetooth_loader btnvtool_exec:file rx_file_perms;
 
