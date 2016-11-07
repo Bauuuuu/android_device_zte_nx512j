@@ -1,1 +1,1 @@
-add_lunch_combo broken_nx512j-userdebug
+add_lunch_combo tesla_nx512j-userdebug
