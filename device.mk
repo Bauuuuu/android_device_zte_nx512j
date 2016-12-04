@@ -86,8 +86,8 @@ PRODUCT_COPY_FILES += \
 	
 
 # Gello
- PRODUCT_PACKAGES += \
-     Gello
+# PRODUCT_PACKAGES += \
+#     Gello
 
 # GPS
 PRODUCT_COPY_FILES += \
