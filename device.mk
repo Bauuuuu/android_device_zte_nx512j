@@ -152,8 +152,7 @@ PRODUCT_COPY_FILES += \
     $(DEVICE_PATH)/configs/hostapd_default.conf:system/etc/hostapd/hostapd_default.conf \
     $(DEVICE_PATH)/configs/hostapd.deny:system/etc/hostapd/hostapd.deny \
     $(DEVICE_PATH)/configs/p2p_supplicant_overlay.conf:system/etc/wifi/p2p_supplicant_overlay.conf \
-    $(DEVICE_PATH)/configs/wpa_supplicant_overlay.conf:system/etc/wifi/wpa_supplicant_overlay.conf \
-    $(DEVICE_PATH)/configs/wpa_supplicant.conf:system/etc/wifi/wpa_supplicant.conf
+    $(DEVICE_PATH)/configs/wpa_supplicant_overlay.conf:system/etc/wifi/wpa_supplicant_overlay.conf
 
 ifeq ($(BOARD_USES_QCNE),true)
 PRODUCT_PACKAGES += \
@@ -174,9 +173,9 @@ PRODUCT_PACKAGES += \
 PRODUCT_COPY_FILES += \
     frameworks/native/data/etc/android.software.midi.xml:system/etc/permissions/android.software.midi.xml
 
-# ifree card needed APNs
-PRODUCT_COPY_FILES += \
-    $(DEVICE_PATH)/configs/apns-conf.xml:system/etc/apns-conf.xml
+# File Manager
+PRODUCT_PACKAGES += \
+    CMFileManager
 
 # Audio
 PRODUCT_PACKAGES += \
@@ -188,7 +187,8 @@ PRODUCT_PACKAGES += \
     libqcompostprocbundle \
     libqcomvisualizer \
     libqcomvoiceprocessing \
-    tinymix
+    tinymix \
+    CMFileManager
 
 # Camera
 PRODUCT_PACKAGES += \
@@ -346,8 +346,8 @@ endif
 
 # Wifi
 PRODUCT_PACKAGES += \
-    libwcnss_qmi
-
+    libwcnss_qmi \
+    wpa_supplicant.conf
 # Wifi
 PRODUCT_PACKAGES += \
     libqsap_sdk \
